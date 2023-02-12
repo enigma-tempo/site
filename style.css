@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@500&display=swap');
+
+:root{
+    --light: #F2DCB3;
+    --dark: #554131;
+    --btn-primary: #400E73;
+    --btn-secondary: #84188C;
+    --yellow: #F2C744;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+    font-family: 'Mali', 'cursive';
+    color: var(--dark);
+}
+
+.box{
+    border-radius: 10px;
+    background-color: var(--light);
+    justify-content: space-between;
+    color: var(--dark);
+}
+
+.bg{
+    background: var(--dark);
+    background: linear-gradient(180deg, var(--dark) 0%, #F2C744 100%);
+    background-attachment: fixed;
+}
+
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-select~label {
+  opacity: 1;
+  transform: scale(.85) translateY(-2.3rem) translateX(.15rem);
+}
+.form-floating label{
+    background-color: var(--light);
+    top: 30%;
+    left: 15px;
+    width: auto;
+    height: auto;
+    padding: 0%;
+}
+
+.form-floating>.form-control{
+    padding: 2rem;
+    background-color: var(--light);
+    border-color: var(--dark);
+}
+
+.btn-dark {
+    --bs-btn-color: var(--light);
+    --bs-btn-bg: var(--btn-primary);
+    --bs-btn-border-color: var(--btn-primary);
+    --bs-btn-hover-color: var(--light);
+    --bs-btn-hover-bg: var(--btn-secondary);
+    --bs-btn-hover-border-color: var(--btn-secondary);
+    --bs-btn-focus-shadow-rgb: 66,70,73;
+    --bs-btn-active-color: var(--light);
+    --bs-btn-active-bg: var(--btn-secondary);
+    --bs-btn-active-border-color: var(--btn-secondary);
+    --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--light);
+    --bs-btn-disabled-bg: var(--btn-primary);
+    --bs-btn-disabled-border-color: var(--btn-primary);
+}
+
+a{
+    color: var(--btn-primary);
+}
+
+a:hover{
+    color: var(--btn-secondary);
+}
+
+#cadastrar{
+    --bs-btn-color: var(--btn-primary);
+    --bs-btn-border-color: none;
+    --bs-btn-hover-color: var(--btn-secondary);
+    --bs-btn-hover-bg: none;
+}
+
+#logo{
+    width: 50px;
+    height: 75px;
+}
+
+ul{
+    text-decoration: none;
+}
+
+.navbar-dark {
+    background-color: var(--dark);
+    --bs-navbar-color: var(--yellow);
+    --bs-navbar-hover-color: var(--light);
+    --bs-navbar-toggler-border-color: var(--yellow);
+    --bs-navbar-active-color: var(--light);
+}
+
+.bg-light{
+    background-color: var(--light)!important;
+}
+
+.card{
+    background-color: #2196F3;
+    border-radius: 20px;
+    width: 240px;
+    min-width: 200px;
+    height: 380px;
+    margin: 0 1%;
+    margin-bottom: 5%;
+    padding: 5px;
+}
+
+.cardTop{
+    position: relative;
+    top: 10px;
+    left: 10px;
+
+    width: 90%;
+    align-content: center;
+}
+
+.cardAtrib{
+    background-color: #6363ff;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.card img{
+    display: block;
+    margin: 20px auto;
+    width: 88%;
+    align-self: center;
+    border-radius: 20px;
+    height: 180px;
+}
+
+.card .description{
+    min-height: 85px;
+    align-content: center;
+    text-align: center;
+}
+
+.card .mana{
+    position: relative;
+    top: 0px;
+    left: 10px;
+}
