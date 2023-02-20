@@ -10,7 +10,7 @@
   <body class="bg-login" onload="loginPage()">
     <div class="d-flex align-items-center justify-content-center vh-100">
       <div class="col-10 col-md-8 col-lg-6 col-xl-5">
-        <div class="d-flex flex-column text-center card box p-5">
+        <div class="d-flex flex-column text-center boxLogin ps-5 pe-5 pt-3 pb-3">
           <div id="divLogin">
             <h1 class="mb-5">Entre com sua conta!</h1>
             <form class="d-flex flex-column" action="">
@@ -46,13 +46,16 @@
                 <input type="email" class="form-control" id="floatingInput" placeholder="Email">
                 <label for="floatingInput">Email</label>
               </div>
-              <div class="form-floating mb-2">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Senha">
-                <label for="floatingPassword">Senha</label>
-              </div>
-              <div class="form-floating mb-2">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Confirmação de senha">
-                <label for="floatingPassword">Confirmação de senha</label>
+              <div class="d-flex flex-row">
+                <div class="form-floating mb-2 me-2">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Senha">
+                  <label for="floatingPassword">Senha</label>
+                </div>
+                <div class="form-floating mb-2">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Confirmação de senha">
+                  <label for="floatingPassword">Confirmação de senha</label>
+                </div>
+
               </div>
               <div class="align-items-center">
                 <button class="btn btn-dark w-50 btn-lg text-center" type="submit">CRIAR</button>
