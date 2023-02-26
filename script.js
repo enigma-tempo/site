@@ -1,6 +1,7 @@
 let urlBase = "https://api-enigma-tempo.onrender.com/api/";
 let gameConfig = {"id_jogador":"","id_personalidade":"","id_baralho":"","id_oponente":""};
-let playerLogin = "";
+
+// import * as requests from 'request.js';
 
 function telaCadastro(){
     let login = document.getElementById("divLogin");
@@ -14,78 +15,6 @@ function telaLogin(){
     let cadastro = document.getElementById("divCadastro")
     cadastro.classList.add("d-none")
     login.classList.remove("d-none")
-}
-
-function createCard(card){
-    let item = document.createElement("li");
-    item.classList.add("cards");
-    let top = document.createElement("div");
-    top.classList.add("d-flex", "flex-row", "justify-content-between");
-    let id = document.createElement("span");
-    let name = document.createElement("p");
-    name.classList.add("name");
-    let attack = document.createElement("div");
-    attack.classList.add("d-flex", "flex-row", "justify-content-center", "cardAtrib");
-    let health = document.createElement("div");
-    health.classList.add("d-flex", "flex-row", "justify-content-center", "cardAtrib");
-    let mana = document.createElement("div");
-    mana.classList.add("cardAtrib", "mana");
-    let effect = document.createElement("span");
-    let description = document.createElement("p");
-    description.classList.add("description");
-    let params = document.createElement("span");
-    let rarity = document.createElement("span");
-    let image = document.createElement("img");
-    id.innerHTML = card._id;
-    id.classList.add("d-none");
-    params.innerHTML = card.params;
-    params.classList.add("d-none");
-    effect.innerHTML = card.effect;
-    effect.classList.add("d-none");
-    attack.innerHTML = card.attack;
-    name.innerHTML = card.name;
-    health.innerHTML = card.health;
-    image.src = card.sprite;
-    // rarity.innerHTML = card.rarity;
-    description.innerHTML = card.description;
-    mana.innerHTML = card.mana;
-    item.appendChild(id);
-    item.appendChild(params);
-    item.appendChild(effect);
-    item.appendChild(mana);
-    item.appendChild(image);
-    item.appendChild(name);
-    item.appendChild(description);
-    item.appendChild(top);
-    top.appendChild(attack);
-    top.appendChild(health);
-    // item.appendChild(rarity);
-    return item;
-}
-
-function getCards(){
-    let data = getRequest(urlBase+"cards");
-    data = JSON.parse(data);
-	let cards = data['cards'];
-    let lista = document.getElementById("listCards");
-    cards.forEach(element => {
-        let card = createCard(element);
-        lista.appendChild(card);
-    });
-}
-
-function getRequest(url){
-    let request = new XMLHttpRequest();
-    request.open("GET", url, false);
-    request.send();
-    return request.responseText
-}
-
-function postRequest(url,body){
-    let request = new XMLHttpRequest();
-    request.open("POST", url, true);
-    request.send(body);
-    return request.responseText
 }
 
 function createItem(element,tipo){
@@ -194,25 +123,82 @@ function login(){
     // console.log(result);
     let alert = document.getElementById("alertLogin");
     if(username=="admin" && password=="admin"){
-        alert.innerHTML = '<div id="successAlert" class="alert alert-success alert-dismissible fade show"><strong>Login realizado com sucesso!</strong> Você será redirecionado.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
-        playerLogin = username;
-        window.location.href = "index.html?username="+username;
+        showAlert("alertLogin","success","Login realizado com sucesso!","Você será redirecionado.");
+        sessionStorage.setItem('user', username);
+        window.location.href = "index.html";
     }else{
         if (username=="" || password=="") {
-            alert.innerHTML = '<div id="warningAlert" class="alert alert-warning alert-dismissible fade show"><strong>Atenção!</strong> Todos os campos são obrigatórios.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';'<div id="errorAlert" class="alert alert-danger alert-dismissible fade show"><strong>Erro!</strong> Login ou senha incorretos.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+            showAlert("alertLogin","warning","Atenção!","Todos os campos são obrigatórios.");
         }else{
-            alert.innerHTML = '<div id="errorAlert" class="alert alert-danger alert-dismissible fade show"><strong>Erro!</strong> Login ou senha incorretos.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+            showAlert("alertLogin","danger","Erro!","Login ou senha incorretos.");
         }
     }
 }
 
 function cadastro(){
-    
+    let name = document.getElementById("name").value;
+    let username = document.getElementById("usernameRegister").value.toLowerCase();
+    let email = document.getElementById("email").value.toLowerCase();
+    let password = document.getElementById("passwordRegister").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let erro = false;    
+
+    if (name=="" || username=="" || password=="") {
+        erro=true;
+        showAlert("alertRegister","warning","Atenção!","Todos os campos são obrigatórios.");
+    }
+    if (!validateEmail(email)){
+        erro=true;
+        showAlert("alertRegister","danger","Erro!","Email inválido.");
+    }
+    if (confirmPassword!==password){
+        erro=true;
+        showAlert("alertRegister","danger","Erro!","As senhas não são iguais.");
+    }
+    if (!erro){
+        //função que dá post em usuario
+        showAlert("alertRegister","success","Cadastro realizado com sucesso!","Entre na sua conta!");
+    }
 }
 
-function loginValidation(){
-    if(window.location.search.slice(1).split("=")[1] != null){
+function showAlert(id, tipo, titulo, mensagem){
+    let alert = document.getElementById(id);
+    alert.innerHTML = '<div class="alert alert-'+tipo+' alert-dismissible fade show"><strong>'+titulo+'</strong> '+mensagem+'<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+}
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+window.onload = function(){
+    if(sessionStorage.getItem('user')!=null){
         document.getElementById("jogar").classList.remove("d-none");
         document.getElementById("login").classList.add("d-none");
+        document.getElementById("logout").classList.remove("d-none");
+    }
+}
+
+
+function logout(){
+    sessionStorage.clear();
+    window.location.href = "login.html";
+}
+
+function mostrarSenha(item, button){
+    let olho = document.getElementById(button);
+    let senha = document.getElementById(item);
+    olho.addEventListener('mousedown', showPassword);
+    olho.addEventListener('mouseup', hidePassword);
+    olho.addEventListener('mouseout', function(){
+        senha.type = 'password';
+        olho.removeEventListener('mousedown', showPassword);
+        olho.removeEventListener('mouseup', hidePassword);
+    });
+    function showPassword(){
+        senha.type = 'text';
+    }
+    function hidePassword(){
+        senha.type = 'password';
     }
 }

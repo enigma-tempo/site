@@ -103,28 +103,57 @@ ul{
     border-radius: 20px;
     width: 220px;
     min-width: 200px;
-    height: 300px;
+    height: 350px;
     margin: 1rem;
     padding: 0.5rem;
+    border: 10px solid var(--btn-secondary);
 }
 
 .cardAtrib {
     background-color: var(--light);
-    color: var(--dark);
+    color: white;
+    text-shadow: 
+               -1px -1px 0px black, 
+               -1px 1px 0px black,                    
+                1px -1px 0px black,                  
+                1px 0px 0px black;
+    font-size: 1.5em;
     border-radius: 100%;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     text-align: center;
     vertical-align: middle;
+}
+.mana{
+    background-color: #3F7FD2;
+    position: relative;
+    top: -25px;
+    left: -25px;
+}
+
+.attack{
+    background-color: #FFEF3F;
+    position: relative;
+    bottom: -25px;
+    left: -25px;
+}
+
+.health{
+    background-color: #B82520;
+    position: relative;
+    bottom: -25px;
+    right: -25px;
 }
 
 .cards img {
     display: flex;
     margin: 10px auto;
-    width: 90%;
     align-self: center;
     border-radius: 20px;
     height: 150px;
+    top: -40px;
+    position: relative;
+
 }
 
 .cards .name{
@@ -135,6 +164,8 @@ ul{
     text-align: center;
     font-size: 0.9em;
     margin-bottom: 10px;
+    top: -40px;
+    position: relative;
 }
 
 .cards .description{
@@ -142,6 +173,8 @@ ul{
     font-size: 0.8em;
     margin-bottom: 0;
     height: 30px;
+    top: -40px;
+    position: relative;
 }
 
 .box{
@@ -200,4 +233,11 @@ button a{
 
 button a:hover{
     color: inherit;
+}
+
+#mostrarSenhaLogin, #mostrarSenhaCadastro, #mostrarConfirmarSenha{
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    cursor: pointer;
 }

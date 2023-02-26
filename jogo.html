@@ -11,7 +11,7 @@
     <header class="d-flex w-100 align-items-center justify-content-center">      
       <nav class="navbar navbar-expand-md navbar-dark w-100">
         <div class="container-fluid m-2">
-          <img class="mb-3" id="logo" src="imagens\logo2-1.png" alt="logo">
+          <img id="logo" src="imagens\logo2-1.png" alt="logo">
           <span class="navbar-brand h1 ms-1">Enigma Tempo</span>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
           <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Início</a>
+                <a class="nav-link active" href="index.html">Início</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="cartas.html">Cartas</a>
@@ -28,6 +28,11 @@
                 <a class="nav-link" href="sobre.html">Sobre</a>
               </li>
             </ul>
+          </div>
+          <a href="login.html" id="login" class="ms-auto btn btn-dark">Login</a>
+          <a href="jogo.html" id="jogar" class="d-none ms-auto btn btn-dark">JOGAR</a>
+          <a id="logout" class="ms-2 btn btn-dark d-none" onclick="logout()">Sair</a>
+        </div>
       </nav>
     </header>
     <div class="d-flex flex-column box">
