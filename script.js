@@ -1,15 +1,12 @@
-let urlGetCards = "https://api-enigma-tempo.onrender.com/api/cards";
-
-function loginPage(){
-    document.getElementById("cadastrar").addEventListener("click", telaCadastro);
-    document.getElementById("entrar").addEventListener("click", telaLogin);
-}
+let urlBase = "https://api-enigma-tempo.onrender.com/api/";
+let gameConfig = {"id_jogador":"","id_personalidade":"","id_baralho":"","id_oponente":""};
+let playerLogin = "";
 
 function telaCadastro(){
-    let login = document.getElementById("divLogin")
-    let cadastro = document.getElementById("divCadastro")
-    login.classList.add("d-none")
-    cadastro.classList.remove("d-none")
+    let login = document.getElementById("divLogin");
+    let cadastro = document.getElementById("divCadastro");
+    login.classList.add("d-none");
+    cadastro.classList.remove("d-none");
 }
 
 function telaLogin(){
@@ -67,7 +64,7 @@ function createCard(card){
 }
 
 function getCards(){
-    let data = getRequest(urlGetCards);
+    let data = getRequest(urlBase+"cards");
     data = JSON.parse(data);
 	let cards = data['cards'];
     let lista = document.getElementById("listCards");
@@ -84,11 +81,18 @@ function getRequest(url){
     return request.responseText
 }
 
-function createItem(element){
+function postRequest(url,body){
+    let request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    request.send(body);
+    return request.responseText
+}
+
+function createItem(element,tipo){
     let item = document.createElement("li");
     let input = document.createElement("input");
     input.type = 'radio';
-    input.name = 'personalidade';
+    input.name = tipo;
     input.id = element._id;
     input.value = element._id;
     input.classList.add("btn-check");
@@ -107,26 +111,108 @@ function createItem(element){
     return item;
 }
 
+async function gamePage(){
+    getPersonalidades();
+    let proximo = document.getElementById("next");
+    while(gameConfig['id_personalidade'] == ""){
+       await setEscolha(proximo,"personalidade");
+    }
+    getBaralho(gameConfig['id_personalidade']);
+    while(gameConfig['id_baralho'] == ""){
+        await setEscolha(proximo,"baralho");
+    }
+    getOponente(gameConfig['id_personalidade']);
+    while(gameConfig['id_oponente'] == ""){
+        await setEscolha(proximo,"oponente");
+    }
+    window.location.href = "enigmatempo.html?id_jogador="+gameConfig['id_jogador']+"&id_personalidade="
+    +gameConfig['id_personalidade']+"&id_baralho="+gameConfig['id_baralho']+"&id_oponente="
+    +gameConfig['id_oponente'];
+}
+
+async function setEscolha(proximo,tipo){
+    await buttonClick(proximo);
+    let itemEscolhido = document.querySelector('input:checked');
+    let alert = document.getElementById("alert");
+    if(itemEscolhido!=null){
+        alert.classList.add("d-none");
+        itemEscolhido=itemEscolhido.value;
+        gameConfig['id_'+tipo] = itemEscolhido;
+        return new Promise(resolve =>{resolve(gameConfig['id_'+tipo])});
+    }else{
+        alert.classList.remove("d-none");
+    }
+}
+
+async function buttonClick(btn){
+    return new Promise(resolve => btn.onclick=()=>resolve());
+}
+
 function getPersonalidades(){
-    // let data = getRequest(urlGetPersonalidades);
-    let data = {"personalidades":[{"_id":"63da7fe8f9327bb20ba5a76e","name":"Dom Pedro I"},{"_id":"63da7fe8f9327bb20ba5a76e","name":"Zumbi dos Palmares"}]}
+// let data = getRequest(urlBase+"personalidades"); //getAllPersonalidades
+    let data = {"personalidades":[{"_id":"1","name":"Dom Pedro I"},{"_id":"2","name":"Zumbi dos Palmares"},{"_id":"5","name":"Zumbi dos Palmares"},{"_id":"3","name":"Zumbi dos Palmares"},{"_id":"4","name":"Zumbi dos Palmares"}]}
     // data = JSON.parse(data);
     let personalidades = data['personalidades'];
-    let lista = document.getElementById("listaPersonalidades");
+    let lista = document.getElementById("lista");
+    lista.innerHTML = "";
+    let tipo = "personalidade";
     personalidades.forEach(element => {
-        let personalidade = createItem(element);
+        let personalidade = createItem(element,tipo);
         lista.appendChild(personalidade);
     });
-    lista.innerHTML += '<li><input type="radio" class="btn-check" name="personalidade" id="personalidade1" autocomplete="off"><label class="btn btn-dark p-2" for="personalidade1"><img src="imagens/locked.png" alt="">Bloqueado</label></li>';
+    lista.innerHTML += '<li><input type="radio" class="btn-check" name="personalidade" id="locked" disabled><label class="btn btn-dark p-2" for="locked"><img src="imagens/locked.png" alt="">Bloqueado</label></li>';
 }
 
-function gamePage(){
-    document.getElementById("next").addEventListener("click", selectElements);
+function getBaralho(id_personalidade){
+    // let data = getRequest(urlBase+"deck/personalidade/"+id_personalidade); //getDeckByIdPersonalidade
+    // data = JSON.parse(data);
+    let data = {"decks":[{"_id":"1","name":"Deck Principal"},{"_id":"2","name":"Deck secundário"}]}
+    let baralhos = data['decks'];
+    document.getElementById("titulo").innerText = "Selecione um baralho";
+    let lista = document.getElementById("lista");
+    lista.innerHTML = "";
+    let tipo = "baralho";
+    baralhos.forEach(element => {
+        let baralho = createItem(element,tipo);
+        lista.appendChild(baralho);
+    });
+    lista.innerHTML += '<li><button class="btn btn-dark p-2"><img src="imagens/create.png" alt=""><p>Criar</p></button></li>';
 }
 
-function selectElements(){
-    let personalidade = document.querySelector('input[name="personalidade"]:checked').value;
-    document.getElementById("personalidade").classList.add("d-none");
-    document.getElementById("baralho").classList.remove("d-none");
+function getOponente(id_personalidade){
+    document.getElementById("titulo").innerText = "Selecione um oponente";
+    getPersonalidades();
+    let player = document.getElementById(id_personalidade);
+    player.disabled = true;
+}
+    
+function login(){
+    let username = document.getElementById("username").value.toLowerCase();
+    let password = document.getElementById("password").value;
+    // let json = {"username":username,"password":password};
+    // let result = postRequest(urlBase+"login",json);
+    // console.log(result);
+    let alert = document.getElementById("alertLogin");
+    if(username=="admin" && password=="admin"){
+        alert.innerHTML = '<div id="successAlert" class="alert alert-success alert-dismissible fade show"><strong>Login realizado com sucesso!</strong> Você será redirecionado.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+        playerLogin = username;
+        window.location.href = "index.html?username="+username;
+    }else{
+        if (username=="" || password=="") {
+            alert.innerHTML = '<div id="warningAlert" class="alert alert-warning alert-dismissible fade show"><strong>Atenção!</strong> Todos os campos são obrigatórios.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';'<div id="errorAlert" class="alert alert-danger alert-dismissible fade show"><strong>Erro!</strong> Login ou senha incorretos.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+        }else{
+            alert.innerHTML = '<div id="errorAlert" class="alert alert-danger alert-dismissible fade show"><strong>Erro!</strong> Login ou senha incorretos.<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+        }
+    }
+}
 
+function cadastro(){
+    
+}
+
+function loginValidation(){
+    if(window.location.search.slice(1).split("=")[1] != null){
+        document.getElementById("jogar").classList.remove("d-none");
+        document.getElementById("login").classList.add("d-none");
+    }
 }
