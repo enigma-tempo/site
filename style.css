@@ -241,3 +241,7 @@ button a:hover{
     right: 20px;
     cursor: pointer;
 }
+
+#loading img{
+    width: 10%;
+}
