@@ -85,12 +85,22 @@ ul{
     text-decoration: none;
 }
 
-.navbar-dark {
+.navbar-dark{
     background-color: var(--dark);
     --bs-navbar-color: var(--yellow);
     --bs-navbar-hover-color: var(--light);
     --bs-navbar-toggler-border-color: var(--yellow);
     --bs-navbar-active-color: var(--light);
+}
+
+footer{
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+footer img{
+    width: 5%;
+    padding: 10px;
 }
 
 .bg-light{
