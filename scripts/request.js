@@ -1,4 +1,4 @@
-const URL_API = "https://api-enigma-tempo.onrender.com/api";
+// const urlBase = 'https://api-enigma-tempo.onrender.com/api/';
 
 const name = document.getElementById('name');
 const attack = document.getElementById('attack');
@@ -36,10 +36,10 @@ function postRequest(url, json) {
 
 function createDynamicSelect()
 { 
-  const api_types = getRequest(URL_API.concat('/types'));
-  const api_classes = getRequest(URL_API.concat('/classes'));
-  const api_subclasses = getRequest(URL_API.concat('/subclasses'));
-  const api_rarities = getRequest(URL_API.concat('/rarities'));
+  const api_types = getRequest(urlBase+'types');
+  const api_classes = getRequest(urlBase+'classes');
+  const api_subclasses = getRequest(urlBase+'subclasses');
+  const api_rarities = getRequest(urlBase+'rarities');
 
   api_types.then(res => {createElementChild(types, res.types)});
   api_classes.then(res => {createElementChild(classes, res.classes)});
@@ -66,16 +66,16 @@ function postCard()
     description: description.value,
     type: types.value,
     rarity: rarities.value,
-    class: classes.value,
+    card_class: classes.value,
     subclass: subclasses.value,
     effect: effect.value,
     params: params.value
   }
 
-  postRequest(URL_API.concat('/cards'), card); 
+  postRequest(urlBase+'/cards', card); 
 }
 
-window.onload = createDynamicSelect();
+// window.onload = createDynamicSelect();
 
 
 

@@ -3,7 +3,7 @@ getCards();
 async function getCards(){
     setTimeout(async function(){
         let data = await getRequest(urlBase+"cards");
-        data = JSON.parse(data);
+        console.log(data);
         let cards = data['cards'];
         let lista = document.getElementById("listCards");
         cards.forEach(element => {
