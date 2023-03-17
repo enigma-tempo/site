@@ -3,7 +3,10 @@ getCards();
 async function getCards(){
     setTimeout(async function(){
         let data = await getRequest(urlBase+"cards");
-        console.log(data);
+        if(data['message'] == 'Erro inesperado. Bad Request '){
+            alert("Não foi possível conectar ao banco de dados... Tente novamente mais tarde");
+            return false;
+        }
         let cards = data['cards'];
         let lista = document.getElementById("listCards");
         cards.forEach(element => {

@@ -46,13 +46,13 @@
           <div class="w-100 mb-1 d-none" id="loadingRegister">
             <img src="imagens/loading.webp" alt="" srcset="">
           </div>
-          <div class="d-flex flex-column">
-            <div class="d-flex flex-row">
-              <div class="form-floating mb-3 me-2">
+          <div class="form-group">
+            <div class="form-group row mb-3">
+              <div class="form-floating col-sm-6">
                 <input type="text" class="form-control" id="firstName" placeholder="Nome">
                 <label for="name">Nome</label>
               </div>
-              <div class="form-floating mb-3">
+              <div class="form-floating col-sm-6">
                 <input type="text" class="form-control" id="lastName" placeholder="Sobrenome">
                 <label for="name">Sobrenome</label>
               </div>
@@ -65,12 +65,12 @@
               <input type="email" class="form-control" id="email" placeholder="Email">
               <label for="email">Email</label>
             </div>
-            <div class="d-flex flex-row">
-              <div class="form-floating mb-3 me-2">
+            <div class="form-group row mb-3">
+              <div class="form-floating col-sm-6">
                 <input type="password" class="form-control" id="passwordRegister" placeholder="Senha"><i id="mostrarSenhaCadastro" class="bi bi-eye" onmouseover="mostrarSenha('passwordRegister','mostrarSenhaCadastro')"></i>
                 <label for="password">Senha</label>
               </div>
-              <div class="form-floating mb-3">
+              <div class="form-floating col-sm-6">
                 <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmação de senha"><i id="mostrarConfirmarSenha" class="bi bi-eye" onmouseover="mostrarSenha('confirmPassword','mostrarConfirmarSenha')"></i>
                 <label for="confirmPassword">Confirmar senha</label>
               </div>

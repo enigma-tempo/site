@@ -35,11 +35,21 @@ function cadastrar() {
     }
     if (!erro) {
         loading.classList.remove('d-none');
-        let json = { name: firstName, last_name: lastName, username: username, email: email, password: password};
+        let json = { name: firstName, last_name: lastName, username: username, email: email, password: password, confirmpassword: confirmPassword};
+        // let json = { name: firstName, last_name: lastName, username: username, email: email, password: password};
         setTimeout(async function () {
             let result = await postRequest(urlBase + 'register', json);
-            // console.log(result);
-            // console.log(result.responseText);
+            let code = JSON.parse(result.responseText)['code'];
+            if (code==1) {
+                showAlert('alertRegister', 'danger', 'Erro!', 'Este nome de usuário já está em uso.');
+                return false;
+            }
+            if (code==2) {
+                showAlert('alertRegister', 'danger', 'Erro!', 'Este email já está em uso.');
+                return false;
+            }
+            console.log(result);
+            console.log(result.responseText);
             loading.classList.add('d-none');
             if (result.status == 201) {
                 showAlert('alertRegister', 'success', 'Cadastro realizado com sucesso!', 'Redirecionando para a tela de Login...');
@@ -55,23 +65,22 @@ function cadastrar() {
 }
 
 function login() {
-    //trocar email para username
-    let email = document.getElementById('username').value.toLowerCase();
+    let username = document.getElementById('username').value.toLowerCase();
     let password = document.getElementById('password').value;
     let loading = document.getElementById('loading');
     loading.classList.remove('d-none');
     if (username == '' || password == '') {
         showAlert('alertLogin', 'warning', 'Atenção!', 'Todos os campos são obrigatórios.');
     } else {
-        let json = { email: email, password: password };
+        let json = { username: username, password: password };
         setTimeout(async function () {
             let result = await postRequest(urlBase + 'login', json);
-            // console.log(result);
-            // console.log(result.responseText);
+            console.log(result);
+            console.log(result.responseText);
             loading.classList.add('d-none');
             if (result.status == 200) {
                 showAlert('alertLogin', 'success', 'Login realizado com sucesso!', 'Você será redirecionado.');
-                sessionStorage.setItem('user', email);
+                sessionStorage.setItem('user', username); //trocar para id
                 window.location.href = 'index.html';
             } else {
                 showAlert('alertLogin', 'danger', 'Erro!', 'Login ou senha incorretos.');
