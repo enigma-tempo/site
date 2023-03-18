@@ -20,47 +20,43 @@ function cadastrar() {
     let password = document.getElementById('passwordRegister').value;
     let confirmPassword = document.getElementById('confirmPassword').value;
     let loading = document.getElementById('loadingRegister');
-    let erro = false;
     if (firstName == '' || lastName == '' || username == '' || password == '') {
-        erro = true;
         showAlert('alertRegister', 'warning', 'Atenção!', 'Todos os campos são obrigatórios.');
+        return false;
     }
     if (!validateEmail(email)) {
-        erro = true;
         showAlert('alertRegister', 'danger', 'Erro!', 'Email inválido.');
+        return false;
     }
     if (confirmPassword !== password) {
-        erro = true;
         showAlert('alertRegister', 'danger', 'Erro!', 'As senhas não são iguais.');
+        return false;
     }
-    if (!erro) {
-        loading.classList.remove('d-none');
-        let json = { name: firstName, last_name: lastName, username: username, email: email, password: password, confirmpassword: confirmPassword};
-        // let json = { name: firstName, last_name: lastName, username: username, email: email, password: password};
-        setTimeout(async function () {
-            let result = await postRequest(urlBase + 'register', json);
-            let code = JSON.parse(result.responseText)['code'];
-            if (code==1) {
-                showAlert('alertRegister', 'danger', 'Erro!', 'Este nome de usuário já está em uso.');
-                return false;
-            }
-            if (code==2) {
-                showAlert('alertRegister', 'danger', 'Erro!', 'Este email já está em uso.');
-                return false;
-            }
-            console.log(result);
-            console.log(result.responseText);
-            loading.classList.add('d-none');
-            if (result.status == 201) {
-                showAlert('alertRegister', 'success', 'Cadastro realizado com sucesso!', 'Redirecionando para a tela de Login...');
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, "1000");
-            } else {
-                showAlert('alertRegister', 'danger', 'Erro!', 'Falha ao tentar cadastrar usuário.');
-            }
-        }, 400);
-    }
+    loading.classList.remove('d-none');
+    let json = { name: firstName, last_name: lastName, username: username, email: email, password: password};
+    setTimeout(async function () {
+        let result = await postRequest(urlBase + 'register', json);
+        let code = JSON.parse(result.responseText)['code'];
+        loading.classList.add('d-none');
+        if (code==1) {
+            showAlert('alertRegister', 'danger', 'Erro!', 'Este nome de usuário já está em uso.');
+            return false;
+        }
+        if (code==2) {
+            showAlert('alertRegister', 'danger', 'Erro!', 'Este email já está em uso.');
+            return false;
+        }
+        console.log(result);
+        console.log(result.responseText);
+        if (result.status == 201) {
+            showAlert('alertRegister', 'success', 'Cadastro realizado com sucesso!', 'Redirecionando para a tela de Login...');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        } else {
+            showAlert('alertRegister', 'danger', 'Erro!', 'Falha ao tentar cadastrar usuário.');
+        }
+    }, 400);
 
 }
 
@@ -80,7 +76,7 @@ function login() {
             loading.classList.add('d-none');
             if (result.status == 200) {
                 showAlert('alertLogin', 'success', 'Login realizado com sucesso!', 'Você será redirecionado.');
-                sessionStorage.setItem('user', JSON.stringify(JSON.parse(result.responseText).user._id)); //trocar para id
+                sessionStorage.setItem('user', JSON.stringify(JSON.parse(result.responseText).user._id));
                 sessionStorage.setItem('token', JSON.parse(result.responseText).token); //token para usar nas rotas bloqueadas. por enquanto tá de enfeite
                 window.location.href = 'index.html';
             } else {
@@ -118,4 +114,3 @@ function mostrarSenha(item, button) {
     }
 }
 
-document.getElementById("cadastroBtn").addEventListener("click",cadastrar);

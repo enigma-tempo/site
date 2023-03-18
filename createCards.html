@@ -19,54 +19,86 @@
             </div>
 		</div>
         <div class="d-flex flex-row m-5">
-            <form class="d-flex flex-column flex-grow-1 px-3" method="POST">
-                <label for="name">Nome da carta</label>
-                <input class="update" type="text" name="name" id="name">
-                <div class="flex-row">
-                    <label for="attack">Ataque</label>
-                    <input class="update" type="number" name="attack" id="attack" value="0">
-                    <label for="health">Vida</label>
-                    <input class="update" type="number" name="health" id="health" value="0">
-                    <label for="mana">Custo</label>
-                    <input class="update" type="number" name="mana" id="mana" value="0">
+            <div class="d-flex flex-column flex-grow-1 px-3" method="POST">
+                <div class="form-floating mb-3 form-group">
+                    <input class="update form-control" type="text" name="name" id="name" placeholder="Nome da carta">
+                    <label for="name">Nome da carta</label>
                 </div>
-                <label for="description">Descrição</label>
-                <textarea class="update" name="description" id="description" rows="4" cols="30"></textarea>
-                <div class="flex-row">
-                    <label for="types">Tipo</label>
-                    <select name="types" id="types">
-                        <option value="0">Nenhum</option>
-                    </select>
-                    <label for="rarities">Raridade</label>
-                    <select name="rarities" id="rarities">
-                        <option value="0">Nenhum</option>
-                    </select>
+                <div class="form-group row mb-3">
+                    <div class="form-floating col-sm-4 form-group">
+                      <input class="update form-control" type="number" name="attack" id="attack" value="0">
+                      <label for="attack">Ataque</label>
+                    </div>
+                    <div class="form-floating col-sm-4 form-group">
+                        <input class="update form-control" type="number" name="health" id="health" value="0">
+                        <label for="health">Vida</label>
+                    </div>
+                    <div class="form-floating col-sm-4 form-group">
+                        <input class="update form-control" type="number" name="mana" id="mana" value="0">
+                        <label for="mana">Custo</label>
+                    </div>
                 </div>
-                <div class="flex-row">
-                    <label for="classes">Classe</label>
-                    <select name="classes" id="classes">
-                        <option value="0">Nenhum</option>
-                    </select>
-                    <label for="subclasses">SubClasse</label>
-                    <select name="subclasses" id="subclasses">
-                        <option value="0">Nenhum</option>
-                    </select>
+                <div class="form-floating mb-3 form-group">
+                    <input type="text" class="update form-control" name="description" id="description" rows="3" placeholder="Descrição">
+                    <label for="description">Descrição</label>
                 </div>
-                <label for="sprite">Imagem</label>
-                <input type="file" name="sprite" id="sprite" onchange="updateImage()">
-                <label for="effect">Efeito</label>
-                <input class="update" type="text" name="effect" id="effect">
-                <label for="params">Parâmetros</label>
-                <input class="update" type="text" name="params" id="params">
+                <div class="form-group row mb-3">
+                    <div class="form-floating col-sm-3 form-group">
+                        <select class="update form-control custom-select" name="types" id="types">
+                            <option value="0">Nenhum</option>
+                        </select>
+                        <label for="types">Tipo</label>
+                    </div>
+                    <div class="form-floating col-sm-3 form-group">
+                        <select class="update form-control custom-select" name="rarities" id="rarities">
+                            <option value="0">Nenhum</option>
+                        </select>
+                        <label for="rarities">Raridade</label>
+                    </div>
+                    <div class="form-floating col-sm-3 form-group">
+                        <select class="update form-control custom-select" name="classes" id="classes">
+                            <option value="0">Nenhum</option>
+                        </select>
+                        <label for="classes">Classe</label>
+                    </div>
+                    <div class="form-floating col-sm-3 form-group">
+                        <select class="update form-control custom-select" name="subclasses" id="subclasses">
+                            <option value="0">Nenhum</option>
+                        </select>
+                        <label for="subclasses">SubClasse</label>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="form-floating col-sm-6 form-group">
+                        <select class="update form-control custom-select" name="effect" id="effect">
+                            <option value="0">Nenhum</option>
+                        </select>
+                        <label for="effect">Efeito</label>
+                    </div>
+                    <div class="col-sm-6 form-group d-flex flex-column justify-content-center">
+                        <p class="m-0" id="effectDescription"></p>
+                    </div>
+                </div>
+                <div class="form-group row" id="params">
+                    <!-- <div class="form-floating col-sm-6 form-group">
+                        <input class="update form-control" type="text" name="params" id="params" placeholder="Parâmetros">
+                        <label for="params">Parâmetros</label>
+                    </div> -->
 
-                <input class="btn btn-success mt-3 mx-auto" type="button" value="Salvar" onclick="postCard">
-            </form>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input form-control" name="sprite" id="sprite" onchange="updateImage()">
+                    <label class="custom-file-label" for="sprite">Imagem</label>
+                </div>
+                
+                <input class="btn btn-dark mt-3 mx-auto" type="button" value="Salvar" onclick="postCard()">
+            </div>
             <div>
                 <div class="cards d-flex flex-column">
                     <span class="d-none" id="effectCard"></span>
                     <span class="d-none" id="paramsCard"></span>
                     <span class="cardAtrib mana" id="manaCard"></span>
-                    <img id="imageCard" src="">
+                    <img id="imageCard" src="imagens/pena.png">
                     <p class="name" id="nameCard"></p>
                     <p class="description flex-grow-1" id="descriptionCard"></p>
                     <div class="d-flex flex-row justify-content-between">
