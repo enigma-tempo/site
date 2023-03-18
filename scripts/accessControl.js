@@ -80,7 +80,8 @@ function login() {
             loading.classList.add('d-none');
             if (result.status == 200) {
                 showAlert('alertLogin', 'success', 'Login realizado com sucesso!', 'Você será redirecionado.');
-                sessionStorage.setItem('user', username); //trocar para id
+                sessionStorage.setItem('user', JSON.stringify(JSON.parse(result.responseText).user._id)); //trocar para id
+                sessionStorage.setItem('token', JSON.parse(result.responseText).token); //token para usar nas rotas bloqueadas. por enquanto tá de enfeite
                 window.location.href = 'index.html';
             } else {
                 showAlert('alertLogin', 'danger', 'Erro!', 'Login ou senha incorretos.');
