@@ -15,6 +15,10 @@
     <main class="text-center">
         <h1>Crie seu baralho</h1>
         <p>Selecione as cartas que deseja adicionar no seu baralho</p>
+        <div class="my-2">
+          <label for="deck_name">Nome do baralho</label>
+          <input class="update" type="text" name="deck_name" id="deck_name">
+        </div>
         <div class="w-100 mb-1" id="loading">
             <img src="imagens/loading.webp" alt="" srcset="">
         </div>
@@ -24,10 +28,12 @@
                 
             </ul>
         </div>
+        <input class="btn btn-success my-3 mx-auto" type="button" value="Criar" onclick="postDeck()">
     </main>
     <div id="footer" class="mt-auto"></div>
     <script src="scripts/script.js"></script>
     <script src="scripts/request.js"></script>
+    <script src="scripts/getCards.js"></script>
     <script src="scripts/createDeck.js"></script>
   </body>
 </html>

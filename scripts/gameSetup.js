@@ -88,7 +88,7 @@ async function getPersonalidades() {
 }
   
 async function getBaralho(id_personalidade) {
-    let data = getRequest(urlBase+"deck/"+gameConfig['id_jogador']+"/"+id_personalidade); //getDeckByIdPersonalidade
+    let data = getRequest(urlBase+"decks/"+gameConfig['id_jogador']+"/"+id_personalidade); //getDeckByIdPersonalidade
     // let data = {
     //     decks: [
     //     { _id: '1', name: 'Deck Principal' },
@@ -107,7 +107,8 @@ async function getBaralho(id_personalidade) {
         let baralho = createItem(element, tipo);
         lista.appendChild(baralho);
     });
-    lista.innerHTML += '<li><a href="createDeck.html" class="btn btn-dark p-2"><img src="imagens/create.png" alt=""><p>Criar</p></a></li>';
+    link = "createDeck.html?id_jogador="+gameConfig['id_jogador']+"&id_personalidade="+id_personalidade
+    lista.innerHTML += '<li><a href="'+link+'" class="btn btn-dark p-2"><img src="imagens/create.png" alt=""><p>Criar</p></a></li>';
 }
   
 async function getOponente(id_personalidade) {
