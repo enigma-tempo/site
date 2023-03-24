@@ -83,24 +83,20 @@ function postDeck()
         return;
     }
     const urlParams = new URLSearchParams(window.location.search);
-    const id_jogador = sessionStorage.getItem('user');
+    const id_jogador = sessionStorage.getItem('user').replaceAll('"', '');
     const id_personalidade = urlParams.get('id_personalidade');
-
     const post_deck = {
         name: nome_deck.value,
-        player: parseInt(id_jogador),
+        player: id_jogador,
         hero: id_personalidade,
         cards: deck
     }
     setTimeout(async function () {
         let result = await postRequest(urlBase+'decks', post_deck);
-        console.log(id_jogador)
-        console.log(result);
-        console.log(result.responseText);
         loading.classList.add('d-none');
         if (result.status == 201) {
             showAlert('alertError', 'success', 'Baralho cadastrado com sucesso!', 'Você será redirecionado.');
-            window.location.href = 'jogo.html';
+            // window.location.href = 'jogo.html';
         } else {
             showAlert('alertError', 'danger', 'Erro!', 'Ocorreu um erro ao criar o baralho. Tente novamente mais tarde.');
         }

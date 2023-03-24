@@ -97,7 +97,7 @@ async function getBaralho(id_personalidade) {
     // };
     let baralhos;
     await getRequest(urlBase+"decks/"+gameConfig['id_jogador']+"/"+id_personalidade).then(item =>{
-        baralhos = item['decks'];
+        baralhos = item['deck'];
     });
     document.getElementById('titulo').innerText = 'Selecione um baralho';
     let lista = document.getElementById('lista');
@@ -117,7 +117,7 @@ async function getOponente(id_personalidade) {
     document.getElementById('titulo').innerText = 'Selecione um oponente';
     await getPersonalidades().then(e => {
         let player = document.getElementById(id_personalidade);
-        console.log(player);
+        // console.log(player);
         player.disabled = true;
     });
 
