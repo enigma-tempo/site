@@ -13,6 +13,7 @@ html,body{
     height: 100%;
     font-family: 'Mali', 'cursive';
     color: var(--dark);
+    font-size: 12pt;
 }
 
 .boxLogin{
@@ -319,4 +320,22 @@ button a:hover{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+.numCard{
+    background-color: var(--light);
+    width: 50px;
+    border-color: var(--dark);
+    border-radius: 0.375rem;
+}
+
+.aside{
+    display: block;
+    float: right;
+    min-width: 350px;
+    max-width: 350px;
+}
+.box-fixed{
+    position: fixed;
+    width: 350px;
 }

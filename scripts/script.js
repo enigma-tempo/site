@@ -11,6 +11,10 @@ $(function () {
   },100);
 });
 
+function showAlert(id, tipo, titulo, mensagem) {
+  let alert_element = document.getElementById(id);
+  alert_element.innerHTML = '<div class="alert alert-' + tipo + ' alert-dismissible fade show"><strong>' + titulo + '</strong> ' + mensagem + '<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
+}
 
 async function buttonClick(btn) {
   return new Promise((resolve) => (btn.onclick = () => resolve()));

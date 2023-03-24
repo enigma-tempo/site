@@ -63,3 +63,4 @@ function createCard(card){
     // item.appendChild(rarity);
     return item;
 }
+

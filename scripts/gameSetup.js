@@ -1,4 +1,4 @@
-let gameConfig = { id_jogador: '640a787731d407e570312a7b', id_personalidade: '', id_baralho: '', id_oponente: '' };
+let gameConfig = { id_jogador: sessionStorage.getItem('user'), id_personalidade: '', id_baralho: '', id_oponente: '' };
 
 gamePage();
 
@@ -88,7 +88,7 @@ async function getPersonalidades() {
 }
   
 async function getBaralho(id_personalidade) {
-    let data = getRequest(urlBase+"decks/"+gameConfig['id_jogador']+"/"+id_personalidade); //getDeckByIdPersonalidade
+    //let data = getRequest(urlBase+"decks/"+gameConfig['id_jogador']+"/"+id_personalidade); //getDeckByIdPersonalidade
     // let data = {
     //     decks: [
     //     { _id: '1', name: 'Deck Principal' },
@@ -96,18 +96,20 @@ async function getBaralho(id_personalidade) {
     //     ],
     // };
     let baralhos;
-    await getRequest(urlBase+"decks").then(item =>{
+    await getRequest(urlBase+"decks/"+gameConfig['id_jogador']+"/"+id_personalidade).then(item =>{
         baralhos = item['decks'];
     });
     document.getElementById('titulo').innerText = 'Selecione um baralho';
     let lista = document.getElementById('lista');
     lista.innerHTML = '';
     let tipo = 'baralho';
-    baralhos.forEach((element) => {
-        let baralho = createItem(element, tipo);
-        lista.appendChild(baralho);
-    });
-    link = "createDeck.html?id_jogador="+gameConfig['id_jogador']+"&id_personalidade="+id_personalidade
+    if(baralhos != null){
+        baralhos.forEach((element) => {
+            let baralho = createItem(element, tipo);
+            lista.appendChild(baralho);
+        });
+    }
+    link = "createDeck.html?id_personalidade="+id_personalidade;
     lista.innerHTML += '<li><a href="'+link+'" class="btn btn-dark p-2"><img src="imagens/create.png" alt=""><p>Criar</p></a></li>';
 }
   
