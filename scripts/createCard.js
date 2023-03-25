@@ -170,10 +170,11 @@ function createElementChild(fatherElement, array)
 
 function postCard()
 {
+    const file = document.getElementById("file")
+    const sprite = uploadImage(file);
     let params = document.getElementById("params");
     let paramsTxt = "";
     if (params.children.length > 0) {
-        let lista = params.children
         for (let i = 0; i < params.children.length; i++) {
             paramsTxt += params.children[i].children[0].value;
             if (i != params.children.length-1) {
@@ -187,6 +188,7 @@ function postCard()
     health: health.value,
     description: description.value,
     type: types.value,
+    sprite: sprite,
     rarity: rarities.value,
     card_class: classes.value,
     subclass: subclasses.value,
