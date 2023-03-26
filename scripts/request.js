@@ -19,6 +19,15 @@ function postRequest(url, json) {
     resolve(request);
   });
 }
+function deleteRequest(url, id) {
+  return new Promise((resolve) => {
+    console.log(url+id)
+    let request = new XMLHttpRequest();
+    request.open('DELETE', url+id, false);
+    request.send();
+    resolve(request);
+  });
+}
 
 function uploadImage(fileInput){
   files = fileInput.files[0];

@@ -80,6 +80,10 @@
 //                     ]
 //                 };
 
+if (sessionStorage.getItem('role') !== 'admin') {
+    window.location.href = 'cartas.html';
+}
+
 const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos','posture':'Postura afetada'};
 
 var itens = document.getElementsByClassName("update");

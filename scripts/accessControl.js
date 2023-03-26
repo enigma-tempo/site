@@ -77,6 +77,7 @@ function login() {
             if (result.status == 200) {
                 showAlert('alertLogin', 'success', 'Login realizado com sucesso!', 'Você será redirecionado.');
                 sessionStorage.setItem('user', JSON.parse(result.responseText).user._id);
+                sessionStorage.setItem('role', JSON.parse(result.responseText).user.role);
                 sessionStorage.setItem('token', JSON.parse(result.responseText).token); //token para usar nas rotas bloqueadas. por enquanto tá de enfeite
                 window.location.href = 'index.html';
             } else {

@@ -1,3 +1,7 @@
+if (sessionStorage.getItem('role') !== 'admin') {
+    document.getElementById('criar_carta_btn').remove();
+}
+
 getCards();
 
 async function getCards(){
@@ -18,7 +22,9 @@ async function getCards(){
 }
 
 function createCard(card){
-    let item = document.createElement("li");
+    let li = document.createElement("li");
+    li.classList.add('card-li');
+    let item = document.createElement("div");
     item.classList.add("cards", "d-flex", "flex-column",raritiesOptions[card.rarity._id]);
     let top = document.createElement("div");
     top.classList.add("d-flex", "flex-row", "justify-content-between");
@@ -71,6 +77,23 @@ function createCard(card){
     top.appendChild(attack);
     top.appendChild(category);
     top.appendChild(health);
-    return item;
+    li.appendChild(item);
+    if (sessionStorage.getItem('role') === 'admin') {
+        delete_btn = document.createElement("button");
+        delete_btn.innerHTML = "<i class='bi bi-trash3-fill'></i>";
+        delete_btn.classList.add("del_btn");
+        delete_btn.classList.add("btn");
+        delete_btn.classList.add("btn-danger");
+        delete_btn.addEventListener('click',async function(){
+            await deleteRequest(urlBase+"cards/", card._id).then(res =>{
+                location.reload();
+            });
+        });
+        // attack.classList.add('wDeleteBtn');
+        // health.classList.add('wDeleteBtn');
+        // category.classList.add('wDeleteBtn');
+        li.appendChild(delete_btn);
+    }
+    return li;
 }
 
