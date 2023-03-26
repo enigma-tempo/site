@@ -1,3 +1,7 @@
+if (sessionStorage.getItem('role') !== 'admin') {
+    document.getElementById('criar_personalidade_btn').remove();
+}
+
 getHeroes();
 
 async function getHeroes(){

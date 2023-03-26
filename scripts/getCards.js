@@ -93,9 +93,6 @@ function createCard(card){
                 location.reload();
             });
         });
-        // attack.classList.add('wDeleteBtn');
-        // health.classList.add('wDeleteBtn');
-        // category.classList.add('wDeleteBtn');
         li.appendChild(delete_btn);
     }
     return li;

@@ -1,3 +1,7 @@
+if (sessionStorage.getItem('role') !== 'admin') {
+    window.location.href = 'personalidades.html';
+}
+
 const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos'};
 
 var itens = document.getElementsByClassName("update");
