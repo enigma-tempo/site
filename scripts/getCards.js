@@ -29,7 +29,7 @@ function createCard(card){
     divclass.classList.add("d-flex", "flex-row", "justify-content-center");
     let classe = document.createElement("img");
     classe.classList.add("classesCard");
-    classe.src = "imagens/"+card.acting.name+".png";
+    classe.src = "imagens/"+card.acting.name.toLowerCase()+".png";
     let attack = document.createElement("div");
     attack.classList.add("d-flex", "flex-row", "justify-content-center", "cardAtrib","attack");
     let health = document.createElement("div");
