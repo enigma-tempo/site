@@ -114,7 +114,7 @@ function updateCard(){
         return;
     }
     if (this.id == "classes") {
-        item.src = 'imagens/'+this.selectedOptions[0].textContent+'.png';
+        item.src = 'imagens/'+this.selectedOptions[0].textContent.toLowerCase()+'.png';
         return;
     }
 
