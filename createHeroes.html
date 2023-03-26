@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Enigma Tempo</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	</head>
+	<body class="bg-light d-flex flex-column h-100">
+		<div id="header"></div>
+		<div class="text-center">
+            <h1 class="m-3">Cadastrar Personalidade</h1>
+            <div class="w-100 mb-1 d-none" id="loading">
+                <img src="imagens/loading.webp" alt="" srcset="">
+            </div>
+		</div>
+        <div class="d-flex flex-row m-5">
+            <div class="d-flex flex-column flex-grow-1 px-3" method="POST">
+                <div class="form-floating mb-3 form-group">
+                    <input class="update form-control" type="text" name="name" id="name" placeholder="Nome da carta">
+                    <label for="name">Nome da personalidade</label>
+                </div>
+                <div class="form-floating mb-3 form-group">
+                    <input type="text" class="update form-control" name="description" id="description" rows="3" placeholder="Descrição">
+                    <label for="description">Descrição</label>
+                </div>
+                <div class="form-floating mb-3 form-group">
+                    <input type="text" class="update form-control" name="hero_lines" id="hero_lines" rows="3" placeholder="Descrição">
+                    <label for="hero_lines">Falas</label>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="form-floating col-sm-6 form-group">
+                        <select class="update form-control custom-select" name="effect" id="effect">
+                            <option value="0">Nenhum</option>
+                        </select>
+                        <label for="effect">Efeito</label>
+                    </div>
+                    <div class="form-floating col-sm-6 form-group">
+                        <input class="update form-control" type="number" name="mana" id="mana" value="0">
+                        <label for="mana">Custo do poder da personalidade</label>
+                    </div>
+                    <div class="col-sm-6 form-group d-flex flex-column justify-content-center">
+                        <p class="m-0" id="effectDescription"></p>
+                    </div>
+                </div>
+                <div class="form-group row" id="params">
+
+                </div>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input form-control" name="sprite" id="sprite" onchange="updateImage()">
+                    <label class="custom-file-label" for="sprite">Imagem</label>
+                </div>
+                <input class="btn btn-dark mt-3 mx-auto" type="button" value="Salvar" onclick="postHero()">
+                <div class="m-4" id="alertCard"></div>
+            </div>
+            <div>
+                <div class="cards d-flex flex-column" id="raritiesCard">
+                    <span class="d-none" id="effectCard"></span>
+                    <span class="d-none" id="paramsCard"></span>
+                    <span class="cardAtrib mana" id="manaCard"></span>
+                    <img id="imageCard" src="imagens/pena.png">
+                    <div class="d-flex flex-row justify-content-center">
+                        <img id="classesCard" src="" alt="" srcset="">
+                    </div>
+                    <p class="name" id="nameCard"></p>
+                    <p class="description flex-grow-1" id="descriptionCard"></p>
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="cardAtrib attack" id="attackCard"></div>
+                        <div class="d-flex flex-row justify-content-center align-items-center type" id="subclassesCard"></div>
+                        <div class="cardAtrib health" id="healthCard"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div id="footer" class="mt-auto"></div>
+		<script src="scripts/script.js"></script>
+		<script src="scripts/request.js"></script>
+		<script src="scripts/createHero.js"></script>
+	</body>
+</html>
