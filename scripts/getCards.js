@@ -41,7 +41,7 @@ function createCard(card){
     description.classList.add("description","flex-grow-1");
     let params = document.createElement("span");
     let rarity = document.createElement("span");
-    let image = document.createElement("img");
+    let image = document.createElement("div");
     let category = document.createElement('div');
     category.classList.add("d-flex", "flex-row", "justify-content-center", "align-items-center", "postura");
     category.innerHTML = card.category.name;
@@ -54,7 +54,7 @@ function createCard(card){
     attack.innerHTML = card.attack;
     name.innerHTML = card.name;
     health.innerHTML = card.health;
-    image.src = card.sprite;
+    image.style.backgroundImage  = "url('"+card.sprite+"')";
     image.classList.add("imageCard");
     description.innerHTML = card.description;
     mana.innerHTML = card.mana;

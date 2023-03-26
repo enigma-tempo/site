@@ -196,11 +196,15 @@ footer img{
 }
 
 .imageCard {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 20%;
     display: flex;
     margin: 10px auto;
     align-self: center;
     border-radius: 20px;
     height: 150px;
+    width: -webkit-fill-available;
     top: -40px;
     position: relative;
 
