@@ -84,6 +84,7 @@ if (sessionStorage.getItem('role') !== 'admin') {
     window.location.href = 'cartas.html';
 }
 
+exclude_list = ['attackEnemy'];
 const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos','posture':'Postura afetada'};
 
 var itens = document.getElementsByClassName("update");
@@ -198,6 +199,7 @@ function createDynamicSelect()
 function createElementChild(fatherElement, array)
 {
   for (const value of array){
+    if(exclude_list.includes(value.effect)) continue;
     let option = document.createElement('option');
     option.value = value._id;
     option.text = value.name;

@@ -2,6 +2,8 @@ if (sessionStorage.getItem('role') !== 'admin') {
     window.location.href = 'personalidades.html';
 }
 
+effect_list = ["buff","summon","draw","dealDamageHero","healHero","damageEnemies" ,"attackEnemy"];
+
 const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos'};
 
 var itens = document.getElementsByClassName("update");
@@ -85,7 +87,7 @@ function updateImage(){
 
 function createDynamicSelect()
 { 
-  const api_effects = getRequest(urlBase+'hero_effects');
+  const api_effects = getRequest(urlBase+'effects');
 
   api_effects.then(res => {
     effectList = res.effects.length==0?effectDefault:res;
@@ -95,6 +97,7 @@ function createDynamicSelect()
 function createElementChild(fatherElement, array)
 {
   for (const value of array){
+    if(!effect_list.includes(value.effect)) continue;
     let option = document.createElement('option');
     option.value = value._id;
     option.text = value.name;
