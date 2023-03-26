@@ -14,6 +14,7 @@ html,body{
     font-family: 'Mali', 'cursive';
     color: var(--dark);
     font-size: 12pt;
+    min-width: 1000px;
 }
 
 .boxLogin{
@@ -117,7 +118,7 @@ footer img{
     height: 350px;
     margin: 1rem;
     padding: 0.5rem;
-    border: 10px solid var(--btn-secondary);
+    border: 10px solid gray;
 }
 
 .cardAtrib {
@@ -149,6 +150,40 @@ footer img{
     left: -25px;
 }
 
+.type{
+    background-color: var(--light);
+    position: relative;
+    bottom: -25px;
+    width: 60%;
+    height: 70%;
+    border-radius: 20px;
+    font-size: 0.75em;
+    color: var(--dark);
+}
+
+.comum{
+    border-color: grey;
+}
+.raro{
+    border-color: rgb(0, 102, 255);
+}
+.epico{
+    border-color: rgb(114, 0, 180);
+}
+.lendario{
+    border-color: rgb(255, 115, 0);
+}
+
+#classesCard{
+    background-color: var(--light);
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 410px;
+    border-radius: 100%;
+    padding: 5px;
+}
+
 .health{
     background-color: #B82520;
     position: relative;
@@ -156,7 +191,7 @@ footer img{
     right: -25px;
 }
 
-.cards img {
+#imageCard {
     display: flex;
     margin: 10px auto;
     align-self: center;
@@ -164,7 +199,6 @@ footer img{
     height: 150px;
     top: -40px;
     position: relative;
-    width: 100%;
 
 }
 
@@ -176,8 +210,9 @@ footer img{
     text-align: center;
     font-size: 0.9em;
     margin-bottom: 10px;
-    top: -40px;
+    top: -20px;
     position: relative;
+    height: 25px;
 }
 
 .cards .description{
@@ -185,7 +220,7 @@ footer img{
     font-size: 0.8em;
     margin-bottom: 0;
     height: 30px;
-    top: -40px;
+    top: -30px;
     position: relative;
 }
 

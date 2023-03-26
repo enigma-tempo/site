@@ -59,13 +59,13 @@
                         <select class="update form-control custom-select" name="classes" id="classes">
                             <option value="0">Nenhum</option>
                         </select>
-                        <label for="classes">Classe</label>
+                        <label for="classes">Atuação</label>
                     </div>
                     <div class="form-floating col-sm-3 form-group">
                         <select class="update form-control custom-select" name="subclasses" id="subclasses">
                             <option value="0">Nenhum</option>
                         </select>
-                        <label for="subclasses">SubClasse</label>
+                        <label for="subclasses">Postura</label>
                     </div>
                 </div>
                 <div class="form-group row mb-3">
@@ -80,10 +80,6 @@
                     </div>
                 </div>
                 <div class="form-group row" id="params">
-                    <!-- <div class="form-floating col-sm-6 form-group">
-                        <input class="update form-control" type="text" name="params" id="params" placeholder="Parâmetros">
-                        <label for="params">Parâmetros</label>
-                    </div> -->
 
                 </div>
                 <div class="custom-file">
@@ -92,18 +88,23 @@
                 </div>
                 
                 <input class="btn btn-dark mt-3 mx-auto" type="button" value="Salvar" onclick="postCard()">
+                <div class="m-4" id="alertCard"></div>
             </div>
             <div>
-                <div class="cards d-flex flex-column">
+                <div class="cards d-flex flex-column" id="raritiesCard">
                     <span class="d-none" id="effectCard"></span>
                     <span class="d-none" id="paramsCard"></span>
                     <span class="cardAtrib mana" id="manaCard"></span>
                     <img id="imageCard" src="imagens/pena.png">
+                    <div class="d-flex flex-row justify-content-center">
+                        <img id="classesCard" src="" alt="" srcset="">
+                    </div>
                     <p class="name" id="nameCard"></p>
                     <p class="description flex-grow-1" id="descriptionCard"></p>
                     <div class="d-flex flex-row justify-content-between">
-                        <div class="d-flex flex-row justify-content-center cardAtrib attack" id="attackCard"></div>
-                        <div class="d-flex flex-row justify-content-center cardAtrib health" id="healthCard"></div>
+                        <div class="cardAtrib attack" id="attackCard"></div>
+                        <div class="d-flex flex-row justify-content-center align-items-center type" id="subclassesCard"></div>
+                        <div class="cardAtrib health" id="healthCard"></div>
                     </div>
                 </div>
             </div>
