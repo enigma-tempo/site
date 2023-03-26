@@ -60,11 +60,18 @@ var effectDefault = {'effects':
                             'id': 9,
                             'name': 'Mudar vida da personalidade inimiga',
                             'effect': 'setAttib',
-                            'params': 'attribute:text,value:number',
+                            'params': 'value:number',
                             'description': 'Muda a vida da personalidade inimiga para o valor escolhido'
                         },
                         {
                             'id': 10,
+                            'name': 'Motivação',
+                            'effect': 'buffSelf',
+                            'params': 'attack:number,health:number',
+                            'description': 'Aumenta o valor de ataque e vida de si mesmo.'
+                        },
+                        {
+                            'id': 11,
                             'name': 'Intimidar',
                             'effect': 'damageEnemies',
                             'params': 'enemies:number,health:number',
@@ -72,6 +79,11 @@ var effectDefault = {'effects':
                         }
                     ]
                 };
+
+const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos'};
+
+const raritiesOptions = ['','lendario','epico','raro','comum'];
+const classesOptions = ['','erudito','trabalhador','ativista','investidor','religioso','transgressor','politico','louco','militar','artista'];
 var itens = document.getElementsByClassName("update");
 
 const name = document.getElementById('name');
@@ -97,9 +109,24 @@ for (i = 0; i < itens.length; i++) {
 } 
 
 function updateCard(){
+    let item = document.getElementById(this.id+"Card");
     if (this.id == "effect") showParams(this.options['selectedIndex']);
-    console.log(this.id+"Card");
-    document.getElementById(this.id+"Card").innerHTML = document.getElementById(this.id).value;
+    if (this.id == "rarities") {
+        item.className = 'cards d-flex flex-column';
+        item.classList.add(raritiesOptions[this.selectedIndex]);
+        return;
+    }
+    if (this.id == "classes") {
+        item.src = 'imagens/'+this.selectedOptions[0].textContent+'.png';
+        return;
+    }
+
+    if (this.type == 'select-one') {
+        item.innerHTML = document.getElementById(this.id).selectedOptions[0].text;
+        return;
+    }
+    item.innerHTML = document.getElementById(this.id).value;
+
 }
 
 function showParams(id){
@@ -120,12 +147,12 @@ function showParams(id){
             let input = document.createElement("input");
             input.name = p[0];
             input.id = p[0];
-            input.placeholder = p[0];
+            input.placeholder = paramsNames[p[0]];
             input.type = p[1];
             input.classList.add("form-control", "mb-3");
             let label = document.createElement("label");
             label.htmlFor = p[0];
-            label.innerHTML = p[0];
+            label.innerHTML = paramsNames[p[0]];
             div.appendChild(input);
             div.appendChild(label);
             divParams.appendChild(div);
@@ -154,7 +181,7 @@ function createDynamicSelect()
   api_subclasses.then(res => {createElementChild(subclasses, res.subclasses)});
   api_rarities.then(res => {createElementChild(rarities, res.rarities)});
   api_effects.then(res => {
-    effectList = res??effectDefault;
+    effectList = res.effects.length==0?effectDefault:res;
     createElementChild(effects, effectList.effects)});
 }
 
@@ -168,10 +195,10 @@ function createElementChild(fatherElement, array)
   }
 }
 
-function postCard()
+async function postCard()
 {
-    const file = document.getElementById("file")
-    const sprite = uploadImage(file);
+    const file = document.getElementById("sprite")
+    const sprite = await uploadImage(file);
     let params = document.getElementById("params");
     let paramsTxt = "";
     if (params.children.length > 0) {
@@ -182,21 +209,32 @@ function postCard()
             }            
         }
     }
-  const card = {
-    name: name.value,
-    attack: attack.value,
-    health: health.value,
-    description: description.value,
-    type: types.value,
-    sprite: sprite,
-    rarity: rarities.value,
-    card_class: classes.value,
-    subclass: subclasses.value,
-    effects: effect.options['selectedIndex'],
-    params: paramsTxt
-  }
-
-  postRequest(urlBase+'/cards', card); 
+    const card = {
+        name: name.value,
+        attack: attack.value,
+        health: health.value,
+        mana: mana.value,
+        description: description.value,
+        type: types.value,
+        sprite: sprite,
+        rarity: rarities.value,
+        card_class: classes.value,
+        subclass: subclasses.value,
+        effects: effect.options['selectedIndex'],
+        params: paramsTxt
+    }
+    setTimeout(async function () {
+        let result = await postRequest(urlBase+'cards', card);
+        console.log(result)
+        if (result.status == 201) {
+            showAlert('alertCard', 'success', 'Carta cadastrada com sucesso!', 'Você será redirecionado.');
+            // window.location.href = 'cartas.html';
+            console.log(sprite)
+        } else {
+            showAlert('alertCard', 'danger', 'Erro!', 'Ocorreu um erro ao criar a carta. Tente novamente mais tarde.');
+        }
+    }, 400);
+    
 }
 
 
