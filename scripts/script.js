@@ -1,4 +1,6 @@
 const urlBase = 'https://api-enigma-tempo.onrender.com/api/';
+const raritiesOptions = {'6420514b3407ebcfe7c8bc01':'comum','642051513407ebcfe7c8bc03':'raro','642051683407ebcfe7c8bc05':'epico','6420516f3407ebcfe7c8bc07':'lendario'};
+
 $(function () {
     $('#header').load('header.html');
     $('#footer').load('footer.html');

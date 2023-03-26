@@ -14,11 +14,8 @@
 		<div id="header"></div>
 		<div class="text-center">
             <h1 class="m-3">Cadastrar carta</h1>
-            <div class="w-100 mb-1 d-none" id="loading">
-                <img src="imagens/loading.webp" alt="" srcset="">
-            </div>
 		</div>
-        <div class="d-flex flex-row m-5">
+        <div class="d-flex flex-row mx-5">
             <div class="d-flex flex-column flex-grow-1 px-3" method="POST">
                 <div class="form-floating mb-3 form-group">
                     <input class="update form-control" type="text" name="name" id="name" placeholder="Nome da carta">
@@ -82,34 +79,37 @@
                 <div class="form-group row" id="params">
 
                 </div>
-                <div class="custom-file">
+                <div class="custom-file mb-1">
                     <input type="file" class="custom-file-input form-control" name="sprite" id="sprite" onchange="updateImage()">
                     <label class="custom-file-label" for="sprite">Imagem</label>
                 </div>
-                
-                <input class="btn btn-dark mt-3 mx-auto" type="button" value="Salvar" onclick="postCard()">
-                <div class="m-4" id="alertCard"></div>
+                <div class="w-100 m-1 d-none d-flex flex-row justify-content-center" id="loading">
+                    <img src="imagens/loading.webp" alt="" srcset="">
+                </div>
+                <div class="m-1" id="alertCard"></div>
+                <input class="btn btn-dark m-1 mx-auto" type="button" value="Salvar" onclick="postCard()">
             </div>
             <div>
                 <div class="cards d-flex flex-column" id="raritiesCard">
                     <span class="d-none" id="effectCard"></span>
                     <span class="d-none" id="paramsCard"></span>
                     <span class="cardAtrib mana" id="manaCard"></span>
-                    <img id="imageCard" src="imagens/pena.png">
+                    <img class="imageCard" id="imageCard" src="imagens/pena.png">
                     <div class="d-flex flex-row justify-content-center">
-                        <img id="classesCard" src="" alt="" srcset="">
+                        <img class="classesCard" id="classesCard" src="" alt="" srcset="">
                     </div>
                     <p class="name" id="nameCard"></p>
                     <p class="description flex-grow-1" id="descriptionCard"></p>
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-between" id="divAgente">
                         <div class="cardAtrib attack" id="attackCard"></div>
-                        <div class="d-flex flex-row justify-content-center align-items-center type" id="subclassesCard"></div>
+                        <div class="d-flex flex-row justify-content-center align-items-center postura" id="subclassesCard"></div>
                         <div class="cardAtrib health" id="healthCard"></div>
                     </div>
                 </div>
             </div>
         </div>
 		<div id="footer" class="mt-auto"></div>
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 		<script src="scripts/script.js"></script>
 		<script src="scripts/request.js"></script>
 		<script src="scripts/createCard.js"></script>

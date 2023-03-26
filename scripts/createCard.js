@@ -1,91 +1,88 @@
-var effectDefault = {'effects':
-                    [
-                        {
-                            'id': 1,
-                            'name': 'Inspirar',
-                            'effect': 'buff',
-                            'params': 'alieds:number,attack:number,health:number',
-                            'description': 'Inspira um ou mais aliados aumentando o valor de ataque e vida deles'
-                        },
-                        {
-                            'id': 2,
-                            'name': 'Provocar',
-                            'effect': 'taunt',
-                            'params': '',
-                            'description': 'Inimigos só podem atacar esta carta'
-                        },
-                        {
-                            'id': 3,
-                            'name': 'Invocar',
-                            'effect': 'summon',
-                            'params': 'card_name:text,quantity:number',
-                            'description': 'Invoca uma ou mais cartas para o campo'
-                        },
-                        {
-                            'id': 4,
-                            'name': 'Comprar carta',
-                            'effect': 'draw',
-                            'params': 'quantity:number',
-                            'description': 'Compra cartas para sua mão'
-                        },
-                        {
-                            'id': 5,
-                            'name': 'Escudo',
-                            'effect': 'divineshield',
-                            'params': '',
-                            'description': 'Bloqueia o próximo ataque'
-                        },
-                        {
-                            'id': 6,
-                            'name': 'Agilidade',
-                            'effect': 'charge',
-                            'params': '',
-                            'description': 'Pode atacar imediatamente'
-                        },
-                        {
-                            'id': 7,
-                            'name': 'Causar dano a personalidade inimiga',
-                            'effect': 'dealDamageHero',
-                            'params': 'damage:number',
-                            'description': 'Causa dano direto à personalidade inimiga'
-                        },
-                        {
-                            'id': 8,
-                            'name': 'Curar personalidade aliada',
-                            'effect': 'healHero',
-                            'params': 'heal:number',
-                            'description': 'Cura sua personalidade aliada'
-                        },
-                        {
-                            'id': 9,
-                            'name': 'Mudar vida da personalidade inimiga',
-                            'effect': 'setAttib',
-                            'params': 'value:number',
-                            'description': 'Muda a vida da personalidade inimiga para o valor escolhido'
-                        },
-                        {
-                            'id': 10,
-                            'name': 'Motivação',
-                            'effect': 'buffSelf',
-                            'params': 'attack:number,health:number',
-                            'description': 'Aumenta o valor de ataque e vida de si mesmo.'
-                        },
-                        {
-                            'id': 11,
-                            'name': 'Intimidar',
-                            'effect': 'damageEnemies',
-                            'params': 'enemies:number,health:number',
-                            'description': 'Causa dano em um ou mais inimigos em campo.'
-                        }
-                    ]
-                };
+// var effectDefault = {'effects':
+//                     [
+//                         {
+//                             'id': 1,
+//                             'name': 'Inspirar',
+//                             'effect': 'buff',
+//                             'params': 'alieds:number,attack:number,health:number,posture:text',
+//                             'description': 'Inspira um ou mais aliados aumentando o valor de ataque e vida deles'
+//                         },
+//                         {
+//                             'id': 2,
+//                             'name': 'Provocar',
+//                             'effect': 'taunt',
+//                             'params': '',
+//                             'description': 'Inimigos só podem atacar esta carta'
+//                         },
+//                         {
+//                             'id': 3,
+//                             'name': 'Invocar',
+//                             'effect': 'summon',
+//                             'params': 'card_name:text,quantity:number',
+//                             'description': 'Invoca uma ou mais cartas para o campo'
+//                         },
+//                         {
+//                             'id': 4,
+//                             'name': 'Comprar carta',
+//                             'effect': 'draw',
+//                             'params': 'quantity:number',
+//                             'description': 'Compra cartas para sua mão'
+//                         },
+//                         {
+//                             'id': 5,
+//                             'name': 'Escudo',
+//                             'effect': 'divineshield',
+//                             'params': '',
+//                             'description': 'Bloqueia o próximo ataque'
+//                         },
+//                         {
+//                             'id': 6,
+//                             'name': 'Agilidade',
+//                             'effect': 'charge',
+//                             'params': '',
+//                             'description': 'Pode atacar imediatamente'
+//                         },
+//                         {
+//                             'id': 7,
+//                             'name': 'Causar dano a personalidade inimiga',
+//                             'effect': 'dealDamageHero',
+//                             'params': 'damage:number',
+//                             'description': 'Causa dano direto à personalidade inimiga'
+//                         },
+//                         {
+//                             'id': 8,
+//                             'name': 'Curar personalidade aliada',
+//                             'effect': 'healHero',
+//                             'params': 'heal:number',
+//                             'description': 'Cura sua personalidade aliada'
+//                         },
+//                         {
+//                             'id': 9,
+//                             'name': 'Mudar vida da personalidade inimiga',
+//                             'effect': 'setAttib',
+//                             'params': 'value:number',
+//                             'description': 'Muda a vida da personalidade inimiga para o valor escolhido'
+//                         },
+//                         {
+//                             'id': 10,
+//                             'name': 'Motivação',
+//                             'effect': 'buffSelf',
+//                             'params': 'attack:number,health:number',
+//                             'description': 'Aumenta o valor de ataque e vida de si mesmo.'
+//                         },
+//                         {
+//                             'id': 11,
+//                             'name': 'Intimidar',
+//                             'effect': 'damageEnemies',
+//                             'params': 'enemies:number,health:number',
+//                             'description': 'Causa dano em um ou mais inimigos em campo.'
+//                         }
+//                     ]
+//                 };
 
-const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos'};
+const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos','posture':'Postura afetada'};
 
-const raritiesOptions = ['','lendario','epico','raro','comum'];
-const classesOptions = ['','erudito','trabalhador','ativista','investidor','religioso','transgressor','politico','louco','militar','artista'];
 var itens = document.getElementsByClassName("update");
-
 const name = document.getElementById('name');
 const attack = document.getElementById('attack');
 const health = document.getElementById('health');
@@ -110,10 +107,10 @@ for (i = 0; i < itens.length; i++) {
 
 function updateCard(){
     let item = document.getElementById(this.id+"Card");
-    if (this.id == "effect") showParams(this.options['selectedIndex']);
+    if (this.id == "effect") showParams(this.selectedOptions[0].textContent);
     if (this.id == "rarities") {
         item.className = 'cards d-flex flex-column';
-        item.classList.add(raritiesOptions[this.selectedIndex]);
+        item.classList.add(raritiesOptions[this.selectedOptions[0].value]);
         return;
     }
     if (this.id == "classes") {
@@ -121,19 +118,29 @@ function updateCard(){
         return;
     }
 
-    if (this.type == 'select-one') {
+    if (this.id == 'subclasses') {
         item.innerHTML = document.getElementById(this.id).selectedOptions[0].text;
         return;
+    }
+    if (this.id == 'types'){
+        if (this.selectedOptions[0].textContent == 'Efeito'){
+            document.getElementById('divAgente').classList.add("d-none");
+            return;
+        }else{
+            document.getElementById('divAgente').classList.remove("d-none");
+            return;
+        }
     }
     item.innerHTML = document.getElementById(this.id).value;
 
 }
 
-function showParams(id){
+function showParams(name){
     let paramsDefault;
     divParams.innerHTML = "";
+    // paramsDefault = effectList.effects[id].params
     effectList.effects.forEach(element => {
-        if (element.id == id) {
+        if (element.name == name) {
             paramsDefault = element.params;
             document.getElementById("effectDescription").innerText = element.description;
         }
@@ -197,6 +204,7 @@ function createElementChild(fatherElement, array)
 
 async function postCard()
 {
+    loading.classList.remove('d-none');
     const file = document.getElementById("sprite")
     const sprite = await uploadImage(file);
     let params = document.getElementById("params");
@@ -218,18 +226,18 @@ async function postCard()
         type: types.value,
         sprite: sprite,
         rarity: rarities.value,
-        card_class: classes.value,
-        subclass: subclasses.value,
-        effects: effect.options['selectedIndex'],
+        acting: classes.value,
+        category: subclasses.value,
+        effect: effects.value,
         params: paramsTxt
     }
     setTimeout(async function () {
         let result = await postRequest(urlBase+'cards', card);
+        loading.classList.add('d-none');
         console.log(result)
         if (result.status == 201) {
             showAlert('alertCard', 'success', 'Carta cadastrada com sucesso!', 'Você será redirecionado.');
             // window.location.href = 'cartas.html';
-            console.log(sprite)
         } else {
             showAlert('alertCard', 'danger', 'Erro!', 'Ocorreu um erro ao criar a carta. Tente novamente mais tarde.');
         }

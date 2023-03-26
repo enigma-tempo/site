@@ -19,12 +19,17 @@ async function getCards(){
 
 function createCard(card){
     let item = document.createElement("li");
-    item.classList.add("cards", "d-flex", "flex-column");
+    item.classList.add("cards", "d-flex", "flex-column",raritiesOptions[card.rarity._id]);
     let top = document.createElement("div");
     top.classList.add("d-flex", "flex-row", "justify-content-between");
     let id = document.createElement("span");
     let name = document.createElement("p");
     name.classList.add("name");
+    let divclass = document.createElement("div");
+    divclass.classList.add("d-flex", "flex-row", "justify-content-center");
+    let classe = document.createElement("img");
+    classe.classList.add("classesCard");
+    classe.src = "imagens/"+card.acting.name+".png";
     let attack = document.createElement("div");
     attack.classList.add("d-flex", "flex-row", "justify-content-center", "cardAtrib","attack");
     let health = document.createElement("div");
@@ -37,6 +42,9 @@ function createCard(card){
     let params = document.createElement("span");
     let rarity = document.createElement("span");
     let image = document.createElement("img");
+    let category = document.createElement('div');
+    category.classList.add("d-flex", "flex-row", "justify-content-center", "align-items-center", "postura");
+    category.innerHTML = card.category.name;
     id.innerHTML = card._id;
     id.classList.add("d-none");
     params.innerHTML = card.params;
@@ -46,8 +54,8 @@ function createCard(card){
     attack.innerHTML = card.attack;
     name.innerHTML = card.name;
     health.innerHTML = card.health;
-    image.src = "imagens/"+card.sprite;
-    // rarity.innerHTML = card.rarity;
+    image.src = card.sprite;
+    image.classList.add("imageCard");
     description.innerHTML = card.description;
     mana.innerHTML = card.mana;
     item.appendChild(id);
@@ -55,12 +63,14 @@ function createCard(card){
     item.appendChild(effect);
     item.appendChild(mana);
     item.appendChild(image);
+    divclass.appendChild(classe);
+    item.appendChild(divclass);
     item.appendChild(name);
     item.appendChild(description);
     item.appendChild(top);
     top.appendChild(attack);
+    top.appendChild(category);
     top.appendChild(health);
-    // item.appendChild(rarity);
     return item;
 }
 

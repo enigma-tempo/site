@@ -14,7 +14,11 @@ html,body{
     font-family: 'Mali', 'cursive';
     color: var(--dark);
     font-size: 12pt;
-    min-width: 1000px;
+    min-width: 1000px!important;
+}
+
+header{
+    min-width: 1000px!important;
 }
 
 .boxLogin{
@@ -115,7 +119,7 @@ footer img{
     border-radius: 20px;
     width: 220px;
     min-width: 200px;
-    height: 350px;
+    height: 370px;
     margin: 1rem;
     padding: 0.5rem;
     border: 10px solid gray;
@@ -150,7 +154,7 @@ footer img{
     left: -25px;
 }
 
-.type{
+.postura{
     background-color: var(--light);
     position: relative;
     bottom: -25px;
@@ -174,14 +178,14 @@ footer img{
     border-color: rgb(255, 115, 0);
 }
 
-#classesCard{
+.classesCard{
     background-color: var(--light);
     width: 35px;
     height: 35px;
-    position: absolute;
-    top: 410px;
-    border-radius: 100%;
-    padding: 5px;
+    position: relative;
+    top: -45px;
+    border-radius: 30%;
+    border: 5px solid var(--light);
 }
 
 .health{
@@ -191,7 +195,7 @@ footer img{
     right: -25px;
 }
 
-#imageCard {
+.imageCard {
     display: flex;
     margin: 10px auto;
     align-self: center;
@@ -210,7 +214,7 @@ footer img{
     text-align: center;
     font-size: 0.9em;
     margin-bottom: 10px;
-    top: -20px;
+    top: -40px;
     position: relative;
     height: 25px;
 }
@@ -220,7 +224,7 @@ footer img{
     font-size: 0.8em;
     margin-bottom: 0;
     height: 30px;
-    top: -30px;
+    top: -40px;
     position: relative;
 }
 
