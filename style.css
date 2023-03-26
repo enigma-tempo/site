@@ -206,13 +206,16 @@ footer img{
 
 }
 
+.cards{
+    font-size: 0.7em;
+}
+
 .cards .name{
     background-color: var(--light);
     color: var(--dark);
     padding: 1% 5%;
     border-radius: 20px;
     text-align: center;
-    font-size: 0.9em;
     margin-bottom: 10px;
     top: -40px;
     position: relative;
@@ -221,7 +224,6 @@ footer img{
 
 .cards .description{
     text-align: center;
-    font-size: 0.8em;
     margin-bottom: 0;
     height: 30px;
     top: -40px;
