@@ -206,10 +206,6 @@ footer img{
 
 }
 
-.cards{
-    font-size: 0.7em;
-}
-
 .cards .name{
     background-color: var(--light);
     color: var(--dark);
@@ -218,6 +214,7 @@ footer img{
     text-align: center;
     margin-bottom: 10px;
     top: -40px;
+    font-size: 0.7em;
     position: relative;
     height: 25px;
 }
@@ -226,6 +223,7 @@ footer img{
     text-align: center;
     margin-bottom: 0;
     height: 30px;
+    font-size: 0.7em;
     top: -40px;
     position: relative;
 }
