@@ -142,7 +142,6 @@ function updateCard(){
 function showParams(name){
     let paramsDefault;
     divParams.innerHTML = "";
-    // paramsDefault = effectList.effects[id].params
     effectList.effects.forEach(element => {
         if (element.name == name) {
             paramsDefault = element.params;
@@ -241,7 +240,7 @@ async function postCard()
         console.log(result)
         if (result.status == 201) {
             showAlert('alertCard', 'success', 'Carta cadastrada com sucesso!', 'Você será redirecionado.');
-            // window.location.href = 'cartas.html';
+            window.location.href = 'cartas.html';
         } else {
             showAlert('alertCard', 'danger', 'Erro!', 'Ocorreu um erro ao criar a carta. Tente novamente mais tarde.');
         }

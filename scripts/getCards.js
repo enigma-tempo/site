@@ -64,6 +64,10 @@ function createCard(card){
     image.classList.add("imageCard");
     description.innerHTML = card.description;
     mana.innerHTML = card.mana;
+    let type = card.type.name;
+    if(type=="Efeito"){
+        top.classList.add("d-none");
+    }
     item.appendChild(id);
     item.appendChild(params);
     item.appendChild(effect);
