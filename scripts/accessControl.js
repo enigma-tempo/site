@@ -46,8 +46,6 @@ function cadastrar() {
             showAlert('alertRegister', 'danger', 'Erro!', 'Este email já está em uso.');
             return false;
         }
-        // console.log(result);
-        // console.log(result.responseText);
         if (result.status == 201) {
             showAlert('alertRegister', 'success', 'Cadastro realizado com sucesso!', 'Redirecionando para a tela de Login...');
             setTimeout(() => {
@@ -71,8 +69,6 @@ function login() {
         let json = { username: username, password: password };
         setTimeout(async function () {
             let result = await postRequest(urlBase + 'login', json);
-            // console.log(result);
-            // console.log(result.responseText);
             loading.classList.add('d-none');
             if (result.status == 200) {
                 showAlert('alertLogin', 'success', 'Login realizado com sucesso!', 'Você será redirecionado.');

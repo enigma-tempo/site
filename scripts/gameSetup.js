@@ -1,3 +1,8 @@
+if (sessionStorage.getItem('token') === '' || sessionStorage.getItem('token') === null || sessionStorage.getItem('token') === undefined ) {
+    window.location.href = 'login.html';
+}
+
+
 let gameConfig = { id_jogador: sessionStorage.getItem('user'), id_personalidade: '', id_baralho: '', id_oponente: '' };
 
 gamePage();
