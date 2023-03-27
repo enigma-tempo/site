@@ -82,7 +82,7 @@ function createCard(card){
     top.appendChild(category);
     top.appendChild(health);
     li.appendChild(item);
-    if (sessionStorage.getItem('role') === 'admin') {
+    if (sessionStorage.getItem('role') === 'admin' && window.location.href.split("/").pop()=="cartas.html") {
         delete_btn = document.createElement("button");
         delete_btn.innerHTML = "<i class='bi bi-trash3-fill'></i>";
         delete_btn.classList.add("del_btn");
