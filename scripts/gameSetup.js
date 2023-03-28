@@ -19,8 +19,9 @@ function createItem(element, tipo) {
     label.htmlFor = element._id;
     label.classList.add('btn', 'btn-dark', 'p-2');
     let image = document.createElement('img');
-//     image.src = 'imagens/'+element.name.replaceAll(' ', '-') + '.png';
-    image.src = 'imagens/cardback.png';
+    if(tipo == "baralho") image.src = 'imagens/cardback.png';
+    else image.src = 'imagens/'+element.name.replaceAll(' ', '-') + '.png';
+    
     
     let name = document.createElement('p');
     name.innerText = element.name;
