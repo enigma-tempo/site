@@ -169,6 +169,9 @@ footer img{
 .comum{
     border-color: grey;
 }
+.incomum{
+    border-color: #31c21d;
+}
 .raro{
     border-color: #6689bd;
 }
