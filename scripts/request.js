@@ -5,7 +5,7 @@ function getRequest(url) {
     request.responseType = 'json';
     request.onload = () => {
       resolve(request.response);
-    }
+    };
     request.send();
   });
 }
@@ -32,25 +32,26 @@ function patchRequest(url, json) {
 
 function deleteRequest(url, id) {
   return new Promise((resolve) => {
-    console.log(url+id)
+    console.log(url + id);
     let request = new XMLHttpRequest();
-    request.open('DELETE', url+id, false);
+    request.open('DELETE', url + id, false);
     request.send();
     resolve(request);
   });
 }
 
-function uploadImage(fileInput){
+function uploadImage(fileInput) {
   files = fileInput.files[0];
-  const token = {}
-  const client = filestack.init("AzheqOZy3Txuu4dgJPuRJz");
+  const token = {};
+  const client = filestack.init('AzheqOZy3Txuu4dgJPuRJz');
   return new Promise((resolve) => {
-    client.upload(files, {}, {}, token)
-      .then(res => {
+    client
+      .upload(files, {}, {}, token)
+      .then((res) => {
         resolve(res.url);
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        resolve(err);
       });
   });
 }

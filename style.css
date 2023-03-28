@@ -398,3 +398,6 @@ button a:hover{
     flex-direction: column;
     margin-bottom: 2%;
 }
+.textbox{
+    min-height: 6rem;
+}
