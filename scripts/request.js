@@ -19,6 +19,17 @@ function postRequest(url, json) {
     resolve(request);
   });
 }
+
+function patchRequest(url, json) {
+  return new Promise((resolve) => {
+    let request = new XMLHttpRequest();
+    request.open('PATCH', url, false);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify(json));
+    resolve(request);
+  });
+}
+
 function deleteRequest(url, id) {
   return new Promise((resolve) => {
     console.log(url+id)
