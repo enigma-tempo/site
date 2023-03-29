@@ -10,9 +10,9 @@ $(function () {
 });
 
 function startQuiz() {
-  var questions = [];
+  var questions = getQuestions();
   var pontuação = 0;
-  getQuestions(questions);
+
   document.getElementById('inicio').classList.add('d-none');
   document.getElementById('quiz').classList.remove('d-none');
 
@@ -24,7 +24,7 @@ function startQuiz() {
     q.options.split(';').forEach((o, index) => {
       document.getElementById(index + '-option').innerHTML = o;
     });
-    let proximo = (document.getElementById('responder').innerHTML = q.theme);
+    let proximo = document.getElementById('responder');
     proximo.addEventListener('click', () => {
       pontuação += document.querySelector('input[name="resposta"]:checked').value == q.answer ? 5 : 0;
     });
@@ -38,7 +38,8 @@ function startQuiz() {
   document.getElementById('resultado-valor').innerHTML = pontuação;
 }
 
-async function getQuestions(questions) {
+async function getQuestions() {
+  var questions = [];
   setTimeout(async function () {
     let data = await getRequest(urlBase + 'quizzes');
     if (data['message'] == 'Erro inesperado. Bad Request ') {
@@ -47,7 +48,7 @@ async function getQuestions(questions) {
     }
     let quizzes = data['quizzes'];
 
-    const N = lista.length;
+    const N = quizzes.length;
     const n_questions = 5;
     let random_quiz_list = [];
     for (let i = 0; i < n_questions; i++) {
@@ -63,5 +64,6 @@ async function getQuestions(questions) {
       questions.push(quiz);
     });
     loading.classList.add('d-none');
+    return questions;
   }, 500);
 }
