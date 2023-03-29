@@ -77,7 +77,7 @@ function updateImage(){
     var oFReader = new FileReader();
     oFReader.readAsDataURL(document.getElementById("sprite").files[0]);
     oFReader.onload = function (oFREvent) {
-        document.getElementById("imageCard").src = oFREvent.target.result;
+        document.getElementById("imageCard").style.backgroundImage  = "url('"+oFREvent.target.result+"')";
     };
 }
 
@@ -113,6 +113,7 @@ async function postHero()
     loading.classList.remove('d-none');
     const file = document.getElementById("sprite")
     const sprite = await uploadImage(file);
+    console.log(sprite)
     let params = document.getElementById("params");
     let paramsTxt = "";
     if (params.children.length > 0) {
@@ -148,7 +149,7 @@ async function postHero()
         console.log(result)
         if (result.status == 201) {
             showAlert('alertCard', 'success', 'Personalidade cadastrada com sucesso!', 'Você será redirecionado.');
-            // window.location.href = 'cartas.html';
+            // window.location.href = 'personalidades.html';
             console.log(sprite)
         } else {
             showAlert('alertCard', 'danger', 'Erro!', 'Ocorreu um erro ao criar a personalidade. Tente novamente mais tarde.');

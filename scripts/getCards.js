@@ -46,7 +46,7 @@ function createCard(card){
     let description = document.createElement("p");
     description.classList.add("description","flex-grow-1");
     let params = document.createElement("span");
-    let rarity = document.createElement("span");
+    // let rarity = document.createElement("span");
     let image = document.createElement("div");
     let category = document.createElement('div');
     category.classList.add("d-flex", "flex-row", "justify-content-center", "align-items-center", "postura");
@@ -85,9 +85,7 @@ function createCard(card){
     if (sessionStorage.getItem('role') === 'admin' && window.location.href.split("/").pop()=="cartas.html") {
         delete_btn = document.createElement("button");
         delete_btn.innerHTML = "<i class='bi bi-trash3-fill'></i>";
-        delete_btn.classList.add("del_btn");
-        delete_btn.classList.add("btn");
-        delete_btn.classList.add("btn-danger");
+        delete_btn.classList.add("del_btn", "btn", "btn-danger");
         delete_btn.addEventListener('click',async function(){
             await deleteRequest(urlBase+"cards/", card._id).then(res =>{
                 location.reload();

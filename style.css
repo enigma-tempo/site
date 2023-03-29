@@ -157,8 +157,6 @@ footer img{
     height: 25px;
 }
 
-.hero 
-
 .cardAtrib {
     background-color: var(--light);
     color: white;
@@ -444,12 +442,16 @@ button a:hover{
 .heroImg{
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 0% 20%;
+    background-position: 50% 50%;
     display: flex;
     margin: 10px auto;
     align-self: center;
     border-radius: 20px;
-    height: 150px;
-    width: -webkit-fill-available;
+    height: 200px;
+    width: 180px;
     position: relative;
+}
+
+.top-0{
+    top: 0;
 }
