@@ -162,7 +162,7 @@ async function postCard() {
     effect: effects.value,
     params: paramsTxt,
     context_in_game: game_context.value,
-    historic_context: historic_context.value,
+    context: historic_context.value,
     restrict_acting: restrict_acting.value,
   };
   setTimeout(async function () {
