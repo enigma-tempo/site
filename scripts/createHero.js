@@ -4,7 +4,7 @@ if (sessionStorage.getItem('role') !== 'admin') {
 
 effect_list = ["buff","summon","draw","dealDamageHero","healHero","damageEnemies" ,"attackEnemy"];
 
-const paramsNames = {'alieds':'Quantidade de aliados','attack':'Ataque','health':'Vida','card_name':'Nome da carta','quantity':'Quantidade','damage':'Valor do dano','heal':'Valor da cura','value':'Valor','enemies':'Quantidade de inimigos'};
+const paramsNames = { alieds: 'Quantidade de aliados', attack: 'Ataque', health: 'Vida', card_name: 'Nome da carta', quantity: 'Quantidade', damage: 'Valor do dano', heal: 'Valor da cura', value: 'Valor', enemies: 'Quantidade de inimigos', posture: 'Postura afetada', acting: 'Atuação' };
 
 var itens = document.getElementsByClassName("update");
 
@@ -14,6 +14,8 @@ const mana = document.getElementById('mana');
 const effects = document.getElementById('effect');
 const hero_lines = document.getElementById('hero_lines');
 const divParams = document.getElementById('params');
+const classes = document.getElementById('classes');
+let loading = document.getElementById('loading');
 
 var effectList;
 
@@ -27,35 +29,29 @@ for (i = 0; i < itens.length; i++) {
 
 function updateCard(){
     let item = document.getElementById(this.id+"Card");
-    if (this.id == "effect") showParams(this.options['selectedIndex']);
-    if (this.id == "rarities") {
-        item.className = 'cards d-flex flex-column';
-        item.classList.add(raritiesOptions[this.selectedIndex]);
-        return;
-    }
+    if (this.id == "effect") showParams(this.selectedOptions[0].textContent);
     if (this.id == "classes") {
         item.src = 'imagens/'+this.selectedOptions[0].textContent+'.png';
         return;
     }
-
-    if (this.type == 'select-one') {
-        item.innerHTML = document.getElementById(this.id).selectedOptions[0].text;
-        return;
+    if (this.id == 'name'){
+        item.innerHTML = document.getElementById(this.id).value;
     }
-    item.innerHTML = document.getElementById(this.id).value;
 
 }
 
-function showParams(id){
+function showParams(name){
     let paramsDefault;
+    let div = document.getElementById("divParams");
     divParams.innerHTML = "";
     effectList.effects.forEach(element => {
-        if (element.id == id) {
+        if (element.name == name) {
             paramsDefault = element.params;
             document.getElementById("effectDescription").innerText = element.description;
         }
     });
     if (paramsDefault != "") {
+        div.classList.remove('d-none');
         params = paramsDefault.split(",");
         params.forEach(element => {
             p = element.split(":");
@@ -88,6 +84,10 @@ function updateImage(){
 function createDynamicSelect()
 { 
   const api_effects = getRequest(urlBase+'effects');
+  const api_classes = getRequest(urlBase + 'classes');
+  api_classes.then((res) => {
+    createElementChild(classes, res.classes)});
+    console.log(classes)
 
   api_effects.then(res => {
     effectList = res.effects.length==0?effectDefault:res;
@@ -96,17 +96,21 @@ function createDynamicSelect()
 
 function createElementChild(fatherElement, array)
 {
-  for (const value of array){
-    if(!effect_list.includes(value.effect)) continue;
-    let option = document.createElement('option');
-    option.value = value._id;
-    option.text = value.name;
-    fatherElement.appendChild(option);
-  }
+    for (const value of array){
+        if (fatherElement.id == "classes" || effect_list.includes(value.effect)){
+            let option = document.createElement('option');
+        option.value = value._id;
+        option.text = value.name;
+        fatherElement.appendChild(option);
+        }
+    }
+
 }
+
 
 async function postHero()
 {
+    loading.classList.remove('d-none');
     const file = document.getElementById("sprite")
     const sprite = await uploadImage(file);
     let params = document.getElementById("params");
@@ -119,13 +123,24 @@ async function postHero()
             }            
         }
     }
+    let falas = '';
+    for (let index = 1; index <= 3; index++) {
+        let inputFala = document.getElementById("hero_lines"+index);
+        if(inputFala!=""){
+            falas+=inputFala.value;
+        }
+        if (index != 3) {
+            falas += ";";
+        } 
+    }
     const hero = {
         name: name.value,
         mana: mana.value,
-        hero_lines: hero_lines.value,
+        hero_lines: falas,
         description: description.value,
+        acting: classes.value,
         sprite: sprite,
-        effects: effect.options['selectedIndex'],
+        effects: effect.value,
         params: paramsTxt
     }
     setTimeout(async function () {

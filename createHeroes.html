@@ -29,9 +29,31 @@
                     <input type="text" class="update form-control" name="description" id="description" rows="3" placeholder="Descrição">
                     <label for="description">Descrição</label>
                 </div>
-                <div class="form-floating mb-3 form-group">
-                    <input type="text" class="update form-control" name="hero_lines" id="hero_lines" rows="3" placeholder="Descrição">
-                    <label for="hero_lines">Falas</label>
+                <div class="form-group row mb-3">
+                    <div class="form-floating col-sm-4 form-group">
+                        <input type="text" class="update form-control" name="hero_lines1" id="hero_lines1" rows="3" placeholder="Descrição">
+                        <label for="hero_lines1">Fala de introdução</label>
+                    </div>
+                    <div class="form-floating col-sm-4 form-group">
+                        <input type="text" class="update form-control" name="hero_lines2" id="hero_lines2" rows="3" placeholder="Descrição">
+                        <label for="hero_lines2">Fala de provocação</label>
+                    </div>
+                    <div class="form-floating col-sm-4 form-group">
+                        <input type="text" class="update form-control" name="hero_lines3" id="hero_lines3" rows="3" placeholder="Descrição">
+                        <label for="hero_lines3">Fala de derrota</label>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <div class="form-floating col-sm-6 form-group">
+                        <input class="update form-control" type="number" name="mana" id="mana" value="0">
+                        <label for="mana">Custo do poder da personalidade</label>
+                    </div>
+                    <div class="form-floating col-sm-6 form-group">
+                        <select class="update form-control custom-select" name="classes" id="classes">
+                            <option value="0">Nenhum</option>
+                        </select>
+                        <label for="classes">Atuação</label>
+                    </div>
                 </div>
                 <div class="form-group row mb-3">
                     <div class="form-floating col-sm-6 form-group">
@@ -40,46 +62,40 @@
                         </select>
                         <label for="effect">Efeito</label>
                     </div>
-                    <div class="form-floating col-sm-6 form-group">
-                        <input class="update form-control" type="number" name="mana" id="mana" value="0">
-                        <label for="mana">Custo do poder da personalidade</label>
-                    </div>
                     <div class="col-sm-6 form-group d-flex flex-column justify-content-center">
                         <p class="m-0" id="effectDescription"></p>
                     </div>
                 </div>
-                <div class="form-group row" id="params">
-
+                <div id="divParams" class="mb-3 d-none">
+                    <legend id="legenda">Parâmetros do efeito</legend>
+                    <div class="form-group row" id="params">
+                    </div>
                 </div>
 
                 <div class="custom-file">
                     <input type="file" class="custom-file-input form-control" name="sprite" id="sprite" onchange="updateImage()">
                     <label class="custom-file-label" for="sprite">Imagem</label>
                 </div>
+                <div class="w-100 m-1 d-none d-flex flex-row justify-content-center" id="loading">
+                    <img src="imagens/loading.webp" alt="" srcset="" />
+                </div>
+                <div class="m-1" id="alertCard"></div>
                 <input class="btn btn-dark mt-3 mx-auto" type="button" value="Salvar" onclick="postHero()">
-                <div class="m-4" id="alertCard"></div>
             </div>
             <div>
-                <div class="cards d-flex flex-column" id="raritiesCard">
-                    <span class="d-none" id="effectCard"></span>
-                    <span class="d-none" id="paramsCard"></span>
-                    <span class="cardAtrib mana" id="manaCard"></span>
-                    <img id="imageCard" src="imagens/pena.png">
+                <div class="d-flex flex-column hero">
+                    <img id="imageCard" class="heroImg" src="imagens/pena.png">
                     <div class="d-flex flex-row justify-content-center">
-                        <img id="classesCard" src="" alt="" srcset="">
+                        <img id="classesCard" class="classesCard" src="" alt="" srcset="">
                     </div>
-                    <p class="name" id="nameCard"></p>
-                    <p class="description flex-grow-1" id="descriptionCard"></p>
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="cardAtrib attack" id="attackCard"></div>
-                        <div class="d-flex flex-row justify-content-center align-items-center type" id="subclassesCard"></div>
-                        <div class="cardAtrib health" id="healthCard"></div>
-                    </div>
+                    <p id="nameCard" class="align-items-center"></p>
+                    <div class="d-flex flex-row justify-content-center align-items-center type" id="subclassesCard"></div>
                 </div>
             </div>
         </div>
 		<div id="footer" class="mt-auto"></div>
 		<script src="scripts/script.js"></script>
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 		<script src="scripts/request.js"></script>
 		<script src="scripts/createHero.js"></script>
 	</body>

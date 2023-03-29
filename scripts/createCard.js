@@ -20,6 +20,7 @@ const divParams = document.getElementById('params');
 const restrict_acting = document.getElementById('restrict_acting');
 const historic_context = document.getElementById('context');
 const game_context = document.getElementById('game_context');
+let loading = document.getElementById('loading');
 
 var effectList;
 
@@ -62,6 +63,7 @@ function updateCard() {
 
 function showParams(name) {
   let paramsDefault;
+  let div = document.getElementById("divParams");
   divParams.innerHTML = '';
   effectList.effects.forEach((element) => {
     if (element.name == name) {
@@ -70,6 +72,7 @@ function showParams(name) {
     }
   });
   if (paramsDefault != '') {
+    div.classList.remove('d-none');
     params = paramsDefault.split(',');
     params.forEach((element) => {
       p = element.split(':');
@@ -80,7 +83,7 @@ function showParams(name) {
       input.id = p[0];
       input.placeholder = paramsNames[p[0]];
       input.type = p[1];
-      input.classList.add('form-control', 'mb-3');
+      input.classList.add('form-control','mb-3');
       let label = document.createElement('label');
       label.htmlFor = p[0];
       label.innerHTML = paramsNames[p[0]];
@@ -88,6 +91,8 @@ function showParams(name) {
       div.appendChild(label);
       divParams.appendChild(div);
     });
+  }else{
+    div.classList.add('d-none');
   }
 }
 
