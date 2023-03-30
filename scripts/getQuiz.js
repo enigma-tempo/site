@@ -1,5 +1,5 @@
 if (sessionStorage.getItem('role') !== 'admin') {
-  document.getElementById('criar_personalidade_btn').remove();
+  document.getElementById('criar_quiz_btn').remove();
 }
 if (sessionStorage.getItem('token') === null || sessionStorage.getItem('token') === '') {
   window.location.href = 'login.html';
@@ -47,7 +47,6 @@ async function getQuestions() {
       return false;
     }
     let quizzes = data['quizzes'];
-
     const N = quizzes.length;
     const n_questions = 5;
     let random_quiz_list = [];
