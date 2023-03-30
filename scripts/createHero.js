@@ -146,10 +146,10 @@ async function postHero()
     }
     setTimeout(async function () {
         let result = await postRequest(urlBase+'heroes', hero);
-        console.log(result)
+        loading.classList.add('d-none');
         if (result.status == 201) {
             showAlert('alertCard', 'success', 'Personalidade cadastrada com sucesso!', 'Você será redirecionado.');
-            // window.location.href = 'personalidades.html';
+            window.location.href = 'personalidades.html';
             console.log(sprite)
         } else {
             showAlert('alertCard', 'danger', 'Erro!', 'Ocorreu um erro ao criar a personalidade. Tente novamente mais tarde.');

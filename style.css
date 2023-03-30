@@ -142,7 +142,8 @@ footer img{
     border-radius: 20px;
     padding: 0.5rem;
     border: 10px solid gray;
-    margin-bottom: 5%;
+    margin: 1rem;
+    width: fit-content;
 }
 
 #nameCard{
@@ -454,4 +455,20 @@ button a:hover{
 
 .top-0{
     top: 0;
+}
+
+.clickable:hover{
+    cursor: pointer;
+}
+
+.detailsCard{
+    position: fixed;
+    width: 80%;
+    height: 70%;
+    top: 20%;
+    left: 10%;
+    background-color: var(--light);
+    z-index: 100;
+    border: 5px solid var(--dark);
+    border-radius: 20px;
 }

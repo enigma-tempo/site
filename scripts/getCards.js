@@ -25,7 +25,8 @@ function createCard(card){
     let li = document.createElement("li");
     li.classList.add('card-li');
     let item = document.createElement("div");
-    item.classList.add("cards", "d-flex", "flex-column",raritiesOptions[card.rarity._id]);
+    item.classList.add("cards", "d-flex", "flex-column", "clickable",raritiesOptions[card.rarity._id]);
+    item.addEventListener('click',showDetails);
     let top = document.createElement("div");
     top.classList.add("d-flex", "flex-row", "justify-content-between");
     let id = document.createElement("span");
@@ -40,13 +41,12 @@ function createCard(card){
     attack.classList.add("d-flex", "flex-row", "justify-content-center", "cardAtrib","attack");
     let health = document.createElement("div");
     health.classList.add("d-flex", "flex-row", "justify-content-center", "cardAtrib","health");
-    let mana = document.createElement("span");
-    mana.classList.add("cardAtrib", "mana");
+    let mana = document.createElement("div");
+    mana.classList.add("cardAtrib", "mana","d-flex", "flex-row", "justify-content-center");
     let effect = document.createElement("span");
     let description = document.createElement("p");
     description.classList.add("description","flex-grow-1");
     let params = document.createElement("span");
-    // let rarity = document.createElement("span");
     let image = document.createElement("div");
     let category = document.createElement('div');
     category.classList.add("d-flex", "flex-row", "justify-content-center", "align-items-center", "postura");
@@ -95,4 +95,22 @@ function createCard(card){
     }
     return li;
 }
+var details = document.getElementById("details");
 
+function showDetails(){
+    let nome = document.getElementById("nameDetail");
+    let img = document.getElementById("imageDetail");
+    let mana = document.getElementById("manaDetail");
+    let attack = document.getElementById("attackDetail");
+    let health = document.getElementById("healthDetail");
+    let classe = document.getElementById("classDetail");
+    let category = document.getElementById("categoryDetail");
+    let description = document.getElementById("descriptionDetail");
+    let context_game = document.getElementById("context_game");
+    let context_history = document.getElementById("context_history");
+    details.classList.remove("d-none");
+}
+
+function closeDetails(){
+    details.classList.add("d-none");
+}
