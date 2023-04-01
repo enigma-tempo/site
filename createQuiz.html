@@ -44,8 +44,13 @@
                 <input type="text" class="update form-control" name="option_4" id="option_4" rows="3" placeholder="Quarta opção">
                 <label for="option_4">Opção de resposta 4</label>
             </div>
-            <div class="form-floating mb-3 form-group">
-                <input type="text" class="update form-control" name="answer" id="answer" rows="3" placeholder="Resposta correta">
+            <div class="form-floating col-sm-3 form-group">
+                <select class="update form-control custom-select" name="answer" id="answer">
+                    <option value="1">Resposta 1</option>
+                    <option value="2">Resposta 2</option>
+                    <option value="3">Resposta 3</option>
+                    <option value="4">Resposta 4</option>
+                </select>
                 <label for="answer">Resposta correta</label>
             </div>
             <div class="w-100 m-1 d-none d-flex flex-row justify-content-center" id="loading">

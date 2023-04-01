@@ -21,11 +21,7 @@ async function postQuiz()
         } 
     }
 
-    if(opcoes.includes(answer.value) == false)
-    {
-        showAlert('alertCard', 'danger', 'Erro!', 'A resposta deve tamnbém estar nas opções.');
-        return;
-    }
+    console.log(answer.value);
     const quiz = {
         theme: theme.value,
         question: question.value,

@@ -26,7 +26,7 @@ function createCard(card){
     li.classList.add('card-li');
     let item = document.createElement("div");
     item.classList.add("cards", "d-flex", "flex-column", "clickable",raritiesOptions[card.rarity._id]);
-    item.addEventListener('click',showDetails);
+    item.addEventListener('click', () => { showDetails(card) });
     let top = document.createElement("div");
     top.classList.add("d-flex", "flex-row", "justify-content-between");
     let id = document.createElement("span");
@@ -97,17 +97,27 @@ function createCard(card){
 }
 var details = document.getElementById("details");
 
-function showDetails(){
+function showDetails(card){
     let nome = document.getElementById("nameDetail");
+    nome.innerHTML = card.name;
     let img = document.getElementById("imageDetail");
+    img.style.backgroundImage  = "url('"+card.sprite+"')";
     let mana = document.getElementById("manaDetail");
+    mana.innerHTML = card.mana;
     let attack = document.getElementById("attackDetail");
+    attack.innerHTML = card.attack;
     let health = document.getElementById("healthDetail");
+    health.innerHTML = card.health;
     let classe = document.getElementById("classDetail");
+    classe.innerHTML = card.acting.name;
     let category = document.getElementById("categoryDetail");
+    category.innerHTML = card.category.name;
     let description = document.getElementById("descriptionDetail");
+    description.innerHTML = card.description;
     let context_game = document.getElementById("context_game");
+    context_game.innerHTML = card.context_game;
     let context_history = document.getElementById("context_history");
+    context_history.innerHTML = card.context_history;
     details.classList.remove("d-none");
 }
 

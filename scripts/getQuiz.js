@@ -9,6 +9,8 @@ $(function () {
   document.getElementById('play_quiz').addEventListener('click', startQuiz);
 });
 
+startQuiz();
+
 function startQuiz() {
   var questions = getQuestions();
   var pontuação = 0;
