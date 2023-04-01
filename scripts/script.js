@@ -1,5 +1,5 @@
 const urlBase = 'https://api-enigma-tempo.onrender.com/api/';
-const urlImages = 'http://enigma-tempo-file-api.rf.gd/uploads/';
+const urlImages = 'https://enigma-tempo-file-api.rf.gd/uploads/';
 const raritiesOptions = { '6420514b3407ebcfe7c8bc01': 'comum', '642051513407ebcfe7c8bc03': 'raro', '642051683407ebcfe7c8bc05': 'epico', '6420516f3407ebcfe7c8bc07': 'lendario' };
 
 $(function () {
