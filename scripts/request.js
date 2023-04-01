@@ -42,7 +42,7 @@ function deleteRequest(url, id) {
 
 async function uploadImage(fileInput){
   let img = fileInput.files[0];
-  if(img == undefined) return null;
+  if(img == undefined) return 1;
   let formData = new FormData();
   let fileName = new Date().getTime() +'.'+ img.name.split(".")[1];
   formData.append("sendimage", img);
@@ -51,5 +51,5 @@ async function uploadImage(fileInput){
   if(result.status == 200){
     return 'https://paneled-inception.000webhostapp.com/uploads/'+fileName;
   }
-  return null;
+  return 1;
 }

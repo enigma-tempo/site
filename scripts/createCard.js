@@ -145,7 +145,7 @@ async function postCard() {
   if (sprite == null) {
     sprite = await uploadImage(file);
   }
-  if (sprite == null) {
+  if (sprite == 1) {
     showAlert('alertCard', 'danger', 'Erro!', 'A imagem da carta é obrigatória.');
     return null;
   }
