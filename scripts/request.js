@@ -61,6 +61,6 @@ async function uploadImage(fileInput){
   let formData = new FormData();
        
   formData.append("sendimage", photo);
-  result = await fetch('http://enigma-tempo-file-api.rf.gd/requests.php', {method: "POST", body: formData});
+  result = await fetch('https://enigma-tempo-file-api.rf.gd/requests.php', {method: "POST", body: formData});
   return result.statusText;
 }
