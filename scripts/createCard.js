@@ -21,7 +21,7 @@ const restrict_acting = document.getElementById('restrict_acting');
 const historic_context = document.getElementById('context');
 const game_context = document.getElementById('game_context');
 let loading = document.getElementById('loading');
-
+var sprite = null;
 var effectList;
 
 $(function () {
@@ -142,7 +142,9 @@ function createElementChild(fatherElement, array) {
 async function postCard() {
   loading.classList.remove('d-none');
   const file = document.getElementById('sprite');
-  let sprite = await uploadImage(file);
+  if (sprite == null) {
+    sprite = await uploadImage(file);
+  }
   if (sprite == null) {
     showAlert('alertCard', 'danger', 'Erro!', 'A imagem da carta é obrigatória.');
     return null;
