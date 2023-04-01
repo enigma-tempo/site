@@ -143,9 +143,10 @@ async function postCard() {
   loading.classList.remove('d-none');
   const file = document.getElementById('sprite');
   let sprite = await uploadImage(file);
-  sprite = JSON.parse(sprite);
-  sprite = urlImages + sprite['url'];
-  console.log(sprite);
+  if (sprite == null) {
+    showAlert('alertCard', 'danger', 'Erro!', 'A imagem da carta é obrigatória.');
+    return null;
+  }
   let params = document.getElementById('params');
   let paramsTxt = '';
   if (params.children.length > 0) {

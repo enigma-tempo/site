@@ -40,27 +40,16 @@ function deleteRequest(url, id) {
   });
 }
 
-// function uploadImage(fileInput) {
-//   files = fileInput.files[0];
-//   const token = {};
-//   const client = filestack.init('AzheqOZy3Txuu4dgJPuRJz');
-//   return new Promise((resolve) => {
-//     client
-//       .upload(files, {}, {}, token)
-//       .then((res) => {
-//         resolve(res.url);
-//       })
-//       .catch((err) => {
-//         resolve(err);
-//       });
-//   });
-// }
-
 async function uploadImage(fileInput){
-  let photo = fileInput.files[0];
+  let img = fileInput.files[0];
+  if(img == undefined) return null;
   let formData = new FormData();
-       
-  formData.append("sendimage", photo);
-  result = await fetch('https://enigma-tempo-file-api.rf.gd/requests.php', {method: "POST", body: formData});
-  return result.statusText;
+  let fileName = new Date().getTime() +'.'+ img.name.split(".")[1];
+  formData.append("sendimage", img);
+  formData.append("fileName", fileName);
+  result = await fetch('https://paneled-inception.000webhostapp.com/requests.php', {method: "POST", body: formData});
+  if(result.status == 200){
+    return 'https://paneled-inception.000webhostapp.com/uploads/'+fileName;
+  }
+  return null;
 }
