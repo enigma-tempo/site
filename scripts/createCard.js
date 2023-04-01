@@ -142,7 +142,10 @@ function createElementChild(fatherElement, array) {
 async function postCard() {
   loading.classList.remove('d-none');
   const file = document.getElementById('sprite');
-  const sprite = await uploadImage(file);
+  let sprite = await uploadImage(file);
+  sprite = JSON.parse(sprite);
+  sprite = urlImages + sprite['url'];
+  console.log(sprite);
   let params = document.getElementById('params');
   let paramsTxt = '';
   if (params.children.length > 0) {

@@ -40,18 +40,27 @@ function deleteRequest(url, id) {
   });
 }
 
-function uploadImage(fileInput) {
-  files = fileInput.files[0];
-  const token = {};
-  const client = filestack.init('AzheqOZy3Txuu4dgJPuRJz');
-  return new Promise((resolve) => {
-    client
-      .upload(files, {}, {}, token)
-      .then((res) => {
-        resolve(res.url);
-      })
-      .catch((err) => {
-        resolve(err);
-      });
-  });
+// function uploadImage(fileInput) {
+//   files = fileInput.files[0];
+//   const token = {};
+//   const client = filestack.init('AzheqOZy3Txuu4dgJPuRJz');
+//   return new Promise((resolve) => {
+//     client
+//       .upload(files, {}, {}, token)
+//       .then((res) => {
+//         resolve(res.url);
+//       })
+//       .catch((err) => {
+//         resolve(err);
+//       });
+//   });
+// }
+
+async function uploadImage(fileInput){
+  let photo = fileInput.files[0];
+  let formData = new FormData();
+       
+  formData.append("sendimage", photo);
+  result = await fetch('http://enigma-tempo-file-api.rf.gd/requests.php', {method: "POST", body: formData});
+  return result.statusText;
 }
