@@ -159,6 +159,7 @@ async function postCard() {
       }
     }
   }
+  
   const card = {
     name: name.value,
     attack: attack.value,
@@ -174,7 +175,7 @@ async function postCard() {
     params: paramsTxt,
     context_in_game: game_context.value,
     context: historic_context.value,
-    restrict_acting: restrict_acting.value,
+    restrict_acting: restrict_acting.checked,
   };
   setTimeout(async function () {
     let result = await postRequest(urlBase + 'cards', card);
