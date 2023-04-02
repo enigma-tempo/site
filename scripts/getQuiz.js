@@ -26,7 +26,8 @@ var perguntas = {"quizzes":[{
                         "question":"Pergunta teste 3",
                         "options":"resposta1;resposta2;resposta3;resposta4",
                         "answer":3
-                    },
+                    }
+                    ,
                     {
                         "theme":"Tema teste",
                         "question":"Pergunta teste 4",
@@ -42,19 +43,21 @@ var perguntas = {"quizzes":[{
 ]};
 var quizzes;
 var questions;
-var proximo = document.getElementById('responder');
+var pontos = 0;
+var button = document.createElement("button");
+var resultadoDiv = document.getElementById('resultado');
+var resultado = document.getElementById('resultado-valor');
+var divQuiz = document.getElementById('quiz');
 
 async function startQuiz() {
-  questions = await getQuestions();
-  var pontos = 0;
-  var divTimer = document.getElementById("divTimer");
-  document.getElementById('inicio').classList.add('d-none');
-  var divQuiz = document.getElementById('quiz');
-  divQuiz.classList.remove('d-none');
-  var button = document.createElement("button");
-  button.id = "responder";
-  button.classList.add("btn", "btn-dark", "m-2");
-  button.innerHTML = "Responder";
+    document.getElementById('inicio').classList.add('d-none');
+    questions = await getQuestions();
+    var divTimer = document.getElementById("divTimer");
+    divQuiz.classList.remove('d-none');
+    button.id = "responder";
+    button.classList.add("btn", "btn-dark", "m-2");
+    button.innerHTML = "Responder";
+    button.addEventListener("click", validarRespostas);
 
   questions.forEach(async (q, index) => {
     let divQuestion = document.createElement("div");
@@ -64,20 +67,19 @@ async function startQuiz() {
     let pergunta = document.createElement('h4');
     pergunta.innerHTML = "Pergunta "+(index+1)+": "+q.question;
     pergunta.classList.add("m-3");
-    console.log("Pergunta "+(index+1)+": "+q.question)
     let optionsList = document.createElement("ol");
     optionsList.type = "a";
-    optionsList.id = "respostas";
+    optionsList.id = "respostas"+index;
     optionsList.classList.add("mx-3");
     q.options.split(';').forEach((o, index) => {
         let li = document.createElement("li");
         let input = document.createElement("input");
         let label = document.createElement("label");
         input.type = "radio";
-        input.name = "resposta";
-        input.id = index;
-        input.value = index;
-        label.htmlFor = index;
+        input.name = optionsList.id;
+        input.id = optionsList.id+index;
+        input.value = index+1;
+        label.htmlFor = optionsList.id+index;
         label.innerHTML = o;
         li.appendChild(input);
         li.appendChild(label);
@@ -87,21 +89,10 @@ async function startQuiz() {
     divQuestion.appendChild(pergunta);
     divQuestion.appendChild(optionsList);
     divQuiz.appendChild(divQuestion);
-    // proximo.addEventListener('click', () => {
-    //   pontos += document.querySelector('input[name="resposta"]:checked').value == q.answer ? 5 : 0;
-    // });
-    // timer = setTimeout(() => {
-    //   proximo.click();
-    // }, 120000);
-    // await buttonClick(proximo);
-    // clearTimeout(timer);
   });
   divQuiz.appendChild(button);
   divTimer.classList.remove("d-none");
   contagemRegressiva();
-
-//   document.getElementById('resultado').classList.remove('d-none');
-//   document.getElementById('resultado-valor').innerHTML = pontos;
 }
 async function getQuestions() {
     return new Promise((resolve) => {
@@ -145,9 +136,34 @@ function contagemRegressiva(){
         if(tempoTimer<=0){
             clearInterval(intervalo);
             timerView.textContent = "0:00";
-            proximo.click();
+            button.click();
         }
     }
-    console.log(tempoTimer)
     var intervalo = setInterval(atualizarContagem,1000);
+}
+
+function validarRespostas(){
+    questions.forEach(async (q, index) => {
+        if(document.querySelector('input[name="respostas'+index+'"]:checked') !== null){
+            pontos += document.querySelector('input[name="respostas'+index+'"]:checked').value == q.answer ? 5:0;
+        } 
+    });
+    divQuiz.classList.add("d-none");
+    resultado.innerHTML = "Você fez "+pontos+" pontos!";
+    resultadoDiv.classList.remove("d-none");
+    setTimeout(async function(){
+        let pontosAtuais = await getRequest(urlBase+"user/"+sessionStorage.getItem('user'));
+        pontos += pontosAtuais.me.question_points;
+        let json = {question_points:pontos};
+        console.log(pontosAtuais)
+        console.log(pontos)
+        let result = await patchRequest(urlBase+"user/"+sessionStorage.getItem('user'), json);
+
+        if (result.status == 200) {
+            showAlert('alertDiv', 'success', 'Pontos contabilizados com sucesso!', 'Você será redirecionado.');
+            window.location.href = 'quiz.html';
+          } else {
+            showAlert('alertDiv', 'danger', 'Erro!', 'Ocorreu um erro ao salvar os pontos. Tente novamente mais tarde.');
+          }
+    },500);
 }

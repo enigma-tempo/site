@@ -16,14 +16,15 @@
 <body class="bg-light d-flex flex-column h-100">
   <div id="header"></div>
   <div class="text-center">
-    <h1 class="m-3">Quiz</h1>
+    <h1 class="m-3">Enigmas</h1>
     <a class="btn btn-dark" href="createQuiz.html" id="criar_quiz_btn">Criar Questão</a>
+    <div class="m-4" id="alertDiv"></div>
     <div class="w-100 mb-1 d-none" id="loading">
       <img src="imagens/loading.webp" alt="" srcset="">
     </div>
   </div>
   <div id="inicio" class="d-flex flex-column justify-content-center align-items-center h-100">
-    <button id="play_quiz" class="btn btn-dark m-5">Jogar Quiz</button>
+    <button id="play_quiz" class="btn btn-dark m-5">Jogar Enigma</button>
     <!-- O visual do botão poderia ser como o botão jogar do menu do jogo -->
   </div>
   <div id="quiz" class="d-none d-flex flex-column m-5 p-1">
@@ -33,9 +34,9 @@
     </div>
     
   </div>
-  <div id="resultado" class="d-none">
-    <h3>Você fez</h3>
-    <h1 id="resultado-valor"></h1>
+  <div id="resultado" class="d-none d-flex flex-column justify-content-center align-items-center w-auto mx-auto m-5 p-5">
+    <h3 id="resultado-valor"></h3>
+    
   </div>
   <div id="footer" class="mt-auto"></div>
   <script src="scripts/script.js"></script>

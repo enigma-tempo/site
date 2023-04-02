@@ -107,6 +107,8 @@ ul{
     --bs-navbar-hover-color: var(--light);
     --bs-navbar-toggler-border-color: var(--yellow);
     --bs-navbar-active-color: var(--light);
+    --bs-navbar-brand-color: var(--yellow);
+    --bs-navbar-brand-hover-color: var(--light);
 }
 
 footer{
@@ -464,13 +466,13 @@ button a:hover{
 .detailsCard{
     position: fixed;
     width: 80%;
-    height: 80%;
-    top: 10%;
+    top: 15%;
     left: 10%;
     background-color: var(--light);
     z-index: 100;
     border: 5px solid var(--dark);
     border-radius: 20px;
+    padding-bottom: 2%;
 }
 
 #cardDetails > *{
@@ -478,12 +480,12 @@ button a:hover{
     min-height: 35px;
 }
 
-#quiz{
+#quiz, #resultado{
     border-radius: 20px;
     box-shadow: 5px 5px 10px var(--dark);
 }
 
-#respostas > * > label{
+#quiz label{
     padding: 0.5rem;
 }
 
