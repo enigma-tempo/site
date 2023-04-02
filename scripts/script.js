@@ -28,3 +28,7 @@ function logout() {
   sessionStorage.clear();
   window.location.href = 'login.html';
 }
+
+function closeDetails(){
+  details.classList.add("d-none");
+}

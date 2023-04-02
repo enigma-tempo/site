@@ -464,11 +464,34 @@ button a:hover{
 .detailsCard{
     position: fixed;
     width: 80%;
-    height: 70%;
-    top: 20%;
+    height: 80%;
+    top: 10%;
     left: 10%;
     background-color: var(--light);
     z-index: 100;
     border: 5px solid var(--dark);
     border-radius: 20px;
+}
+
+#cardDetails > *{
+    border-bottom: 1px solid var(--dark);
+    min-height: 35px;
+}
+
+#quiz{
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px var(--dark);
+}
+
+#respostas > * > label{
+    padding: 0.5rem;
+}
+
+#divTimer{
+    border: 3px solid var(--dark);
+    border-radius: 20px;
+    position: fixed;
+    top: 50%;
+    left: 80%;
+    min-width: 210px;
 }

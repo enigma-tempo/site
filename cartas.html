@@ -23,42 +23,46 @@
 		<div>
 			<div id="details" class="detailsCard d-flex flex-column d-none">
 				<div class="d-flex flex-row">
-					<div class="m-2 text-center w-100 fs-3" id="nameDetail">Roberto</div>
+					<div class="m-2 text-center w-100 fs-3" id="nameDetail"></div>
 					<button type="button" class="btn-close ms-auto m-3" onclick="closeDetails()"></button>
 				</div>
 				<div class="d-flex flex-row">
-					<div class="d-flex flex-column px-3 h-100" style="border-right: 2px solid var(--dark); font-size: 0.8em; width: 35%;">
+					<div id="cardDetails" class="d-flex flex-column px-3 h-100 me-3" style="border-right: 2px solid var(--dark); font-size: 0.8em; width: 35%;">
 						<div id="imageDetail" class="imageCard top-0 mb-3" style="background-image: url('imagens/pena.png');"></div>
 						<div class="d-flex flex-row align-items-center">
 							<span class="me-3">Custo de Recursos</span>
-							<div id="manaDetail" class="cardAtrib mana d-flex flex-row justify-content-center position-static top-0 start-0">1</div>
+							<div id="manaDetail" class="cardAtrib mana d-flex flex-row justify-content-center position-static top-0 start-0"></div>
 						</div>
 						<div class="d-flex flex-row align-items-center">
 							<span class="me-3">Valor de ataque</span>
-							<div id="attackDetail" class="d-flex flex-row justify-content-center cardAtrib attack position-static top-0 start-0">1</div>
+							<div id="attackDetail" class="d-flex flex-row justify-content-center cardAtrib attack position-static top-0 start-0"></div>
 						</div>
 						<div class="d-flex flex-row align-items-center">
 							<span class="me-3">Valor de Vida</span>
-							<div id="healthDetail" class="d-flex flex-row justify-content-center cardAtrib health position-static top-0 start-0">1</div>
+							<div id="healthDetail" class="d-flex flex-row justify-content-center cardAtrib health position-static top-0 start-0"></div>
 						</div>
 						<div class="d-flex flex-row align-items-center">
 							<span class="me-3">Atuação - </span> 
-							<span id="classDetail">Transgressor<img class="classesCard position-static top-0 start-0" src="imagens/transgressor.png"></span>
-							
+							<span id="classDetail"></span>
+							<img id="imgClasse" class="classesCard position-static top-0 start-0" src="imagens/transgressor.png">
 						</div>
 						<div  class="d-flex flex-row align-items-center">
 							<div class="me-3">Postura - </div>
-							<div id="categoryDetail">Cooperativa</div>
+							<div id="categoryDetail"></div>
 						</div>
 						<div  class="d-flex flex-column">
 							<span class="me-3">Descrição do efeito</span>
-							<p id="descriptionDetail" class="description">Compre uma carta</p>
+							<p id="descriptionDetail" class="description"></p>
 						</div>
 						
 					</div>
-					<div class="d-flex flex-row" style="width: 60%;">
-						<div id="context_game"></div>
-						<div id="context_history"></div>
+					<div class="d-flex flex-column h-100" style="width: 60%;">
+						<h4>Contexto no jogo</h4>
+						<div id="context_game" class="h-50">
+						</div>
+						<h4>Contexto histórico</h4>
+						<div id="context_history" class="h-50">
+						</div>
 					</div>
 				</div>
 			</div>

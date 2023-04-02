@@ -26,7 +26,7 @@ function createCard(card){
     li.classList.add('card-li');
     let item = document.createElement("div");
     item.classList.add("cards", "d-flex", "flex-column", "clickable",raritiesOptions[card.rarity._id]);
-    item.addEventListener('click', () => { showDetails(card) });
+    item.addEventListener('click', () => { showDetailsCard(card) });
     let top = document.createElement("div");
     top.classList.add("d-flex", "flex-row", "justify-content-between");
     let id = document.createElement("span");
@@ -97,7 +97,7 @@ function createCard(card){
 }
 var details = document.getElementById("details");
 
-function showDetails(card){
+function showDetailsCard(card){
     let nome = document.getElementById("nameDetail");
     nome.innerHTML = card.name;
     let img = document.getElementById("imageDetail");
@@ -109,7 +109,9 @@ function showDetails(card){
     let health = document.getElementById("healthDetail");
     health.innerHTML = card.health;
     let classe = document.getElementById("classDetail");
+    let imgClasse = document.getElementById("imgClasse");
     classe.innerHTML = card.acting.name;
+    imgClasse.src = "imagens/"+card.acting.name.toLowerCase()+".png";
     let category = document.getElementById("categoryDetail");
     category.innerHTML = card.category.name;
     let description = document.getElementById("descriptionDetail");
@@ -121,6 +123,4 @@ function showDetails(card){
     details.classList.remove("d-none");
 }
 
-function closeDetails(){
-    details.classList.add("d-none");
-}
+

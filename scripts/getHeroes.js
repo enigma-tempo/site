@@ -26,7 +26,8 @@ function createHero(hero){
     let li = document.createElement("li");
     li.classList.add("card-li");
     let item = document.createElement("div");
-    item.classList.add("hero", "d-flex", "flex-column");
+    item.classList.add("hero", "d-flex", "flex-column", "clickable");
+    item.addEventListener('click', () => { showDetailsHero(hero) });
     let id = document.createElement("span");
     let name = document.createElement("p");
     name.classList.add("name");
@@ -61,4 +62,28 @@ function createHero(hero){
     }
     return li;
 }
+var detailsHero = document.getElementById("detaisl");
 
+function showDetailsHero(hero){
+    let nome = document.getElementById("nameDetail");
+    nome.innerHTML = hero.name;
+    let img = document.getElementById("imageDetail");
+    img.style.backgroundImage  = "url('"+hero.sprite+"')";
+    let classe = document.getElementById("classDetail");
+    let imgClasse = document.getElementById("imgClasse");
+    classe.innerHTML = hero.acting.name;
+    imgClasse.src = "imagens/"+hero.acting.name.toLowerCase()+".png";
+    let effect = document.getElementById("efeitoDetail");
+    effect.innerHTML = hero.effects.description;
+    let mana = document.getElementById("manaDetail");
+    mana.innerHTML = hero.mana;
+    let description = document.getElementById("descriptionDetail");
+    description.innerHTML = hero.description;
+    let falas = document.getElementById("falas");
+    let fala = hero.hero_lines.split(";");
+    falas.innerHTML = "";
+    fala.forEach(element => {
+        falas.innerHTML += "<div>"+element+"</div>";
+    });
+    detailsHero.classList.remove("d-none");
+}

@@ -18,25 +18,20 @@
   <div class="text-center">
     <h1 class="m-3">Quiz</h1>
     <a class="btn btn-dark" href="createQuiz.html" id="criar_quiz_btn">Criar Questão</a>
-    <div class="w-100 mb-1" id="loading">
+    <div class="w-100 mb-1 d-none" id="loading">
       <img src="imagens/loading.webp" alt="" srcset="">
     </div>
   </div>
-  <div id="inicio">
-    <button id="play_quiz">Jogar Quiz</button>
+  <div class="ms-auto d-flex flex-row me-5 d-none" id="divTimer">
+    <span class="m-2">Tempo Restante - </span>
+    <span id="timer" class="m-2 ms-0">5:00</span>
+  </div>
+  <div id="inicio" class="d-flex flex-column justify-content-center align-items-center h-100">
+    <button id="play_quiz" class="btn btn-dark m-5">Jogar Quiz</button>
     <!-- O visual do botão poderia ser como o botão jogar do menu do jogo -->
   </div>
-  <div id="quiz" class="d-none">
-    <div id="question">
-      <h3 id="tema"></h3>
-      <h2 id="pergunta"></h2>
-      <input type="radio" name="resposta" id="1" value="1"><label for="1" id="1-option"></label>
-      <input type="radio" name="resposta" id="2" value="2"><label for="2" id="1-option"></label>
-      <input type="radio" name="resposta" id="3" value="3"><label for="3" id="1-option"></label>
-      <input type="radio" name="resposta" id="4" value="4"><label for="4" id="1-option"></label>
-      <input type="radio" name="resposta" id="5" value="5"><label for="5" id="1-option"></label>
-      <button id="responder">Responder</button>
-    </div>
+  <div id="quiz" class="d-none d-flex flex-column m-5 p-1">
+    
   </div>
   <div id="resultado" class="d-none">
     <h3>Você fez</h3>

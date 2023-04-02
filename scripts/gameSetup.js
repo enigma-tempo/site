@@ -69,15 +69,6 @@ async function setEscolha(proximo, tipo) {
 async function getPersonalidades() {
     return new Promise((resolve) => {
         setTimeout(async function(){
-            // let data = {
-            // personalidades: [
-            //     { _id: '1', name: 'Dom Pedro I' },
-            //     { _id: '2', name: 'Zumbi dos Palmares' },
-            //     { _id: '5', name: 'Zumbi dos Palmares' },
-            //     { _id: '3', name: 'Zumbi dos Palmares' },
-            //     { _id: '4', name: 'Zumbi dos Palmares' },
-            // ],
-            // };
             let personalidades= [];
             await getRequest(urlBase+"heroes").then(item =>{
                 personalidades = item['heroes'];
@@ -96,13 +87,6 @@ async function getPersonalidades() {
 }
   
 async function getBaralho(id_personalidade) {
-    //let data = getRequest(urlBase+"decks/"+gameConfig['id_jogador']+"/"+id_personalidade); //getDeckByIdPersonalidade
-    // let data = {
-    //     decks: [
-    //     { _id: '1', name: 'Deck Principal' },
-    //     { _id: '2', name: 'Deck secundário' },
-    //     ],
-    // };
     let baralhos;
     await getRequest(urlBase+"decks/"+gameConfig['id_jogador']+"/"+id_personalidade).then(item =>{
         baralhos = item['deck'];
