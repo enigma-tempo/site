@@ -62,7 +62,7 @@ function createHero(hero){
     }
     return li;
 }
-var detailsHero = document.getElementById("detaisl");
+var detailsHero = document.getElementById("details");
 
 function showDetailsHero(hero){
     let nome = document.getElementById("nameDetail");
@@ -74,7 +74,7 @@ function showDetailsHero(hero){
     classe.innerHTML = hero.acting.name;
     imgClasse.src = "imagens/"+hero.acting.name.toLowerCase()+".png";
     let effect = document.getElementById("efeitoDetail");
-    effect.innerHTML = hero.effects.description;
+    effect.innerHTML = hero.effect.description;
     let mana = document.getElementById("manaDetail");
     mana.innerHTML = hero.mana;
     let description = document.getElementById("descriptionDetail");

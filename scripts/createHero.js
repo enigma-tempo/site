@@ -15,6 +15,7 @@ const effects = document.getElementById('effect');
 const hero_lines = document.getElementById('hero_lines');
 const divParams = document.getElementById('params');
 const classes = document.getElementById('classes');
+const historic_context = document.getElementById('context');
 let loading = document.getElementById('loading');
 var sprite = null;
 
@@ -147,7 +148,8 @@ async function postHero()
         description: description.value,
         acting: classes.value,
         sprite: sprite,
-        effects: effect.value,
+        context: historic_context.value,
+        effect: effects.value,
         params: paramsTxt
     }
     setTimeout(async function () {
