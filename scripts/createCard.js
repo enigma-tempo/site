@@ -21,7 +21,7 @@ const restrict_acting = document.getElementById('restrict_acting');
 const historic_context = document.getElementById('context');
 const game_context = document.getElementById('game_context');
 let loading = document.getElementById('loading');
-
+var sprite = null;
 var effectList;
 
 $(function () {
@@ -142,10 +142,13 @@ function createElementChild(fatherElement, array) {
 async function postCard() {
   loading.classList.remove('d-none');
   const file = document.getElementById('sprite');
-  let sprite = await uploadImage(file);
-  sprite = JSON.parse(sprite);
-  sprite = urlImages + sprite['url'];
-  console.log(sprite);
+  if (sprite == null) {
+    sprite = await uploadImage(file);
+  }
+  if (sprite == 1) {
+    showAlert('alertCard', 'danger', 'Erro!', 'A imagem da carta é obrigatória.');
+    return null;
+  }
   let params = document.getElementById('params');
   let paramsTxt = '';
   if (params.children.length > 0) {
@@ -156,6 +159,7 @@ async function postCard() {
       }
     }
   }
+  
   const card = {
     name: name.value,
     attack: attack.value,
@@ -171,7 +175,7 @@ async function postCard() {
     params: paramsTxt,
     context_in_game: game_context.value,
     context: historic_context.value,
-    restrict_acting: restrict_acting.value,
+    restrict_acting: restrict_acting.checked,
   };
   setTimeout(async function () {
     let result = await postRequest(urlBase + 'cards', card);

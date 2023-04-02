@@ -16,6 +16,7 @@ const hero_lines = document.getElementById('hero_lines');
 const divParams = document.getElementById('params');
 const classes = document.getElementById('classes');
 let loading = document.getElementById('loading');
+var sprite = null;
 
 var effectList;
 
@@ -112,8 +113,13 @@ async function postHero()
 {
     loading.classList.remove('d-none');
     const file = document.getElementById("sprite")
-    const sprite = await uploadImage(file);
-    console.log(sprite)
+    if (sprite == null) {
+        sprite = await uploadImage(file);
+    }
+    if (sprite == 1) {
+        showAlert('alertCard', 'danger', 'Erro!', 'A imagem da carta é obrigatória.');
+        return null;
+    }
     let params = document.getElementById("params");
     let paramsTxt = "";
     if (params.children.length > 0) {
