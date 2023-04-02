@@ -115,7 +115,7 @@ async function getQuestions() {
             }
             quizzes = data['quizzes'].length>0 ? data['quizzes'] : perguntas['quizzes'];
             const N = quizzes.length;
-            const n_questions = 5;
+            let n_questions = data['quizzes'].length < 5 ? data['quizzes'].length : 5;
             let random_quiz_list = [];
             for (let i = 0; i < n_questions; i++) {
             let num;
