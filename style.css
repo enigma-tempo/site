@@ -490,8 +490,7 @@ button a:hover{
 #divTimer{
     border: 3px solid var(--dark);
     border-radius: 20px;
-    position: fixed;
-    top: 50%;
-    left: 80%;
+    position: sticky;
+    top: 48%;
     min-width: 210px;
 }
