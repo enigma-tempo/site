@@ -109,7 +109,6 @@ async function getOponente(id_personalidade) {
     document.getElementById('titulo').innerText = 'Selecione um oponente';
     await getPersonalidades().then(e => {
         let player = document.getElementById(id_personalidade);
-        // console.log(player);
         player.disabled = true;
     });
 

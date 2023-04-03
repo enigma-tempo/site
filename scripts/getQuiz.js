@@ -155,8 +155,6 @@ function validarRespostas(){
         let pontosAtuais = await getRequest(urlBase+"user/"+sessionStorage.getItem('user'));
         pontos += pontosAtuais.me.question_points;
         let json = {question_points:pontos};
-        console.log(pontosAtuais)
-        console.log(pontos)
         let result = await patchRequest(urlBase+"user/"+sessionStorage.getItem('user'), json);
 
         if (result.status == 200) {

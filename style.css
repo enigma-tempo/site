@@ -26,6 +26,7 @@ header{
     background-color: var(--light);
     justify-content: space-between;
     color: var(--dark);
+    margin: 10% 0;
 }
 
 .bg-login{
@@ -473,6 +474,7 @@ button a:hover{
     border: 5px solid var(--dark);
     border-radius: 20px;
     padding-bottom: 2%;
+    font-size: 0.8rem;
 }
 
 #cardDetails > *{

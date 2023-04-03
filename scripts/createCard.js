@@ -180,7 +180,6 @@ async function postCard() {
   setTimeout(async function () {
     let result = await postRequest(urlBase + 'cards', card);
     loading.classList.add('d-none');
-    console.log(result);
     if (result.status == 201) {
       showAlert('alertCard', 'success', 'Carta cadastrada com sucesso!', 'Você será redirecionado.');
       window.location.href = 'cartas.html';

@@ -89,7 +89,6 @@ function createDynamicSelect()
   const api_classes = getRequest(urlBase + 'classes');
   api_classes.then((res) => {
     createElementChild(classes, res.classes)});
-    console.log(classes)
 
   api_effects.then(res => {
     effectList = res.effects.length==0?effectDefault:res;
@@ -158,7 +157,6 @@ async function postHero()
         if (result.status == 201) {
             showAlert('alertCard', 'success', 'Personalidade cadastrada com sucesso!', 'Você será redirecionado.');
             window.location.href = 'personalidades.html';
-            console.log(sprite)
         } else {
             showAlert('alertCard', 'danger', 'Erro!', 'Ocorreu um erro ao criar a personalidade. Tente novamente mais tarde.');
         }

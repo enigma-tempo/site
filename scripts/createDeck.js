@@ -96,7 +96,7 @@ function postDeck()
         loading.classList.add('d-none');
         if (result.status == 201) {
             showAlert('alertError', 'success', 'Baralho cadastrado com sucesso!', 'Você será redirecionado.');
-            // window.location.href = 'jogo.html';
+            window.location.href = 'jogo.html';
         } else {
             showAlert('alertError', 'danger', 'Erro!', 'Ocorreu um erro ao criar o baralho. Tente novamente mais tarde.');
         }

@@ -20,8 +20,6 @@ async function postQuiz()
             opcoes += ";";
         } 
     }
-
-    console.log(answer.value);
     const quiz = {
         theme: theme.value,
         question: question.value,

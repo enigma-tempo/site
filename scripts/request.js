@@ -32,7 +32,6 @@ function patchRequest(url, json) {
 
 function deleteRequest(url, id) {
   return new Promise((resolve) => {
-    console.log(url + id);
     let request = new XMLHttpRequest();
     request.open('DELETE', url + id, false);
     request.send();
