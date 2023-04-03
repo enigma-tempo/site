@@ -47,7 +47,7 @@ async function gamePage() {
     while (gameConfig['id_oponente'] == '') {
         await setEscolha(proximo, 'oponente');
     }
-    window.location.href = 'https://diogoasp.github.io/enigmaTempo?id_jogador=' + gameConfig['id_jogador'] + '&id_personalidade=' + gameConfig['id_personalidade'] + '&id_baralho=' + gameConfig['id_baralho'] + '&id_oponente=' + gameConfig['id_oponente'];
+    window.location.href = 'https://enigma-tempo.github.io/jogo?id_jogador=' + gameConfig['id_jogador'] + '&id_personalidade=' + gameConfig['id_personalidade'] + '&id_baralho=' + gameConfig['id_baralho'] + '&id_oponente=' + gameConfig['id_oponente'];
 }
 
 async function setEscolha(proximo, tipo) {
