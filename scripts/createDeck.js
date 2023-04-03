@@ -2,9 +2,16 @@ var deck = [];
 var nome_deck = document.getElementById("deck_name");
 var numCardsDeck = document.getElementById("numCardsDeck");
 var lista = document.getElementById("cardsDeck");
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const paramValue = urlParams.get('id_personalidade');
+
+
 showCards();
 async function showCards(){
     setTimeout(async function(){
+        let hero = await getRequest(urlBase+"heroes/"+paramValue);
         let data = await getRequest(urlBase+"cards");
         if(data['message'] == 'Erro inesperado. Bad Request '){
             alert("Não foi possível conectar ao banco de dados... Tente novamente mais tarde");
@@ -12,33 +19,35 @@ async function showCards(){
         }
         let cards = data['cards'];
         cards.forEach(element => {
-            let div = document.createElement('div');
-            div.classList.add("d-flex", "flex-column");
-            let card = createCard(element);
-            let div2 = document.createElement("d-flex", "flex-row", "justify-content-center", "mx-5");
-            let del = document.createElement('button');
-            del.classList.add("btn", "btn-danger");
-            del.setAttribute('onclick', "delCard('"+element._id+"');");
-            del.disabled = true;
-            let iconDel = document.createElement('i');
-            iconDel.classList.add("bi", "bi-dash-circle");
-            del.appendChild(iconDel);
-            let numCard = document.createElement('span');
-            numCard.classList.add("text-center", "my-auto", "mx-4");
-            numCard.setAttribute('id','numCard-'+element._id);
-            numCard.innerText = "0";
-            let add = document.createElement('button');
-            add.classList.add("btn", "btn-success");
-            add.setAttribute('onclick', "addCard('"+element._id+"');");
-            let iconAdd = document.createElement('i');
-            iconAdd.classList.add("bi", "bi-plus-circle");
-            add.appendChild(iconAdd);
-            div2.appendChild(del);
-            div2.appendChild(numCard);
-            div2.appendChild(add);
-            div.appendChild(card);
-            div.appendChild(div2);      
-            lista.appendChild(div);
+            if(!element.restrict_acting || element.acting.name == hero['hero'].acting.name){
+                let div = document.createElement('div');
+                div.classList.add("d-flex", "flex-column");
+                let card = createCard(element);
+                let div2 = document.createElement("d-flex", "flex-row", "justify-content-center", "mx-5");
+                let del = document.createElement('button');
+                del.classList.add("btn", "btn-danger");
+                del.setAttribute('onclick', "delCard('"+element._id+"');");
+                del.disabled = true;
+                let iconDel = document.createElement('i');
+                iconDel.classList.add("bi", "bi-dash-circle");
+                del.appendChild(iconDel);
+                let numCard = document.createElement('span');
+                numCard.classList.add("text-center", "my-auto", "mx-4");
+                numCard.setAttribute('id','numCard-'+element._id);
+                numCard.innerText = "0";
+                let add = document.createElement('button');
+                add.classList.add("btn", "btn-success");
+                add.setAttribute('onclick', "addCard('"+element._id+"');");
+                let iconAdd = document.createElement('i');
+                iconAdd.classList.add("bi", "bi-plus-circle");
+                add.appendChild(iconAdd);
+                div2.appendChild(del);
+                div2.appendChild(numCard);
+                div2.appendChild(add);
+                div.appendChild(card);
+                div.appendChild(div2);      
+                lista.appendChild(div);
+            }
         });
         loading.classList.add('d-none');
     },500);
