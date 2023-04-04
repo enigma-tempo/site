@@ -20,7 +20,7 @@ function createItem(element, tipo) {
     label.classList.add('btn', 'btn-dark', 'p-2');
     let image = document.createElement('img');
     if(tipo == "baralho") image.src = 'imagens/cardback.png';
-    else image.src = 'imagens/'+element.name.replaceAll(' ', '-') + '.png';
+    else image.src = element.sprite;
     
     
     let name = document.createElement('p');
