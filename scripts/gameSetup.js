@@ -22,7 +22,7 @@ function createItem(element, tipo) {
     if(tipo == "baralho") image.src = 'imagens/cardback.png';
     else{
         image.style.backgroundImage = "url('"+element.sprite+"')";
-        image.classList.add("heroImg");
+        image.classList.add("heroImg","heroSelect");
     }
     
     
