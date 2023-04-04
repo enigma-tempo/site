@@ -498,3 +498,8 @@ button a:hover{
     top: 48%;
     min-width: 210px;
 }
+
+.heroSelect{
+    height: 150px;
+    width: 120px;
+}
