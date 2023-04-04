@@ -117,9 +117,9 @@ function showDetailsCard(card){
     let description = document.getElementById("descriptionDetail");
     description.innerHTML = card.description;
     let context_game = document.getElementById("context_game");
-    context_game.innerHTML = card.context_game;
+    context_game.innerHTML = card.context_in_game;
     let context_history = document.getElementById("context_history");
-    context_history.innerHTML = card.context_history;
+    context_history.innerHTML = card.context;
     details.classList.remove("d-none");
 }
 
