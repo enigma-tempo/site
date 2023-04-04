@@ -18,9 +18,12 @@ function createItem(element, tipo) {
     let label = document.createElement('label');
     label.htmlFor = element._id;
     label.classList.add('btn', 'btn-dark', 'p-2');
-    let image = document.createElement('img');
+    let image = document.createElement('div');
     if(tipo == "baralho") image.src = 'imagens/cardback.png';
-    else image.src = element.sprite;
+    else{
+        image.style.backgroundImage = "url('"+element.sprite+"')";
+        image.classList.add("heroImg");
+    }
     
     
     let name = document.createElement('p');
