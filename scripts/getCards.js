@@ -113,7 +113,7 @@ function showDetailsCard(card){
     classe.innerHTML = card.acting.name;
     imgClasse.src = "imagens/"+card.acting.name.toLowerCase()+".png";
     let category = document.getElementById("categoryDetail");
-    category.innerHTML = card.category.name;
+    category.innerHTML = card.category.name??"Nenhuma";
     let description = document.getElementById("descriptionDetail");
     description.innerHTML = card.description;
     let context_game = document.getElementById("context_game");
