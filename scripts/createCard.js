@@ -146,7 +146,8 @@ async function postCard() {
     sprite = await uploadImage(file);
   }
   if (sprite == 1) {
-    showAlert('alertCard', 'danger', 'Erro!', 'A imagem da carta é obrigatória.');
+    showAlert('alertCard', 'danger', 'Erro!', 'Houve alguma problema ao enviar a imagem. O formato da imagem pode ser incompatível ou estamos com problemas de acesso ao servidor.');
+    sprite = null;
     return null;
   }
   let params = document.getElementById('params');
