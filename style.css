@@ -503,3 +503,7 @@ button a:hover{
     height: 150px;
     width: 120px;
 }
+#imageDetail{
+    height: 16rem;
+    background-position: center;
+}
